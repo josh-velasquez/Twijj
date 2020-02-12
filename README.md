@@ -1,6 +1,9 @@
 # Blitz
 Streaming service
-Run npm install on all three folders
+
+# Environment setup
+- Run npm install on all three folders
+    - .gitignore excludes the node_modules
 
 
 # Setting up OBS
