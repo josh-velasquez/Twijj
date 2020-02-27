@@ -19,6 +19,7 @@ class StreamDelete extends React.Component {
           className="ui button negative"
         >
           Delete
+          
         </button>
         <Link to="/" className="ui button">
           Cancel
