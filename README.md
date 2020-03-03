@@ -89,3 +89,9 @@ For more instructions:
 https://medium.com/@nabendu82/create-a-twitch-clone-using-react-1-25448cd92c0a
 OBS environment setup:
 https://medium.com/@nabendu82/create-a-twitch-clone-using-react-7-be3d116acffe
+
+
+## Installing new dependencies
+
+To install a new dependency, just enter the following (this saves it to the package json):
+npm install --save <dependency>
