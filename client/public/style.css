@@ -1,0 +1,19 @@
+.headList{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+.headOption{
+      margin:10px;
+      display:inline-block;
+      margin-left:10px;
+}
+
+.headLink{
+    text-decoration:none;
+    position:relative;
+}
+.headLink:hover {
+    text-decoration:underline;
+    color:#555
+}
