@@ -89,7 +89,7 @@ const mapStateToProps = (state, ownProps) => {
       "username",
       "bio"
     ),
-    profile: state.profiles[ownProps.match.params.id]
+    enableReinitialize: true
   };
 };
 
