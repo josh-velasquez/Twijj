@@ -57,7 +57,7 @@ ul {
   background-color: #f1f1f1;
 }
 
-.subIcon {
+li a {
   display: block;
   color: #000;
   padding: 8px 16px;
@@ -65,7 +65,7 @@ ul {
 }
 
 /* Change the link color on hover */
-.subIcon:hover {
+li a:hover {
   background-color: #555;
   color: white;
 }

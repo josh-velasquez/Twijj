@@ -8,28 +8,30 @@ import "./style.css";
 import Logo from "./logo.png";
 import Gear from "./gear.png";
 
+import "./style.css";
+import Logo from "./logo.png";
+import Gear from "./gear.png";
+
 const Header = () => {
   return (
-	<div class="ui secondary  menu">
+	<div class="topnav">
 		<div id="logo">
-		<a href="#homepage.html">
-			<img src={Logo} style={{width: "200px" , height: "50px"}}></img>
-		</a>
-		</div>
-		<a style={{color: "white"}} className="item" href="#stream">Stream</a>
-		<a style={{color: "white"}} className="item" href="#browse">Browse</a>
-		<div className="right menu">
-			<div className="item">
-			  <div className="ui icon input">
-				<input type="text" placeholder="Search..."/>
-				<i className="search link icon"></i>
-			  </div>
-			</div>
-			<GoogleAuth/>
-			<a class="item" href="#homepage.html">
-				<img src={Gear} a href="settings.html" style={{width: "40px" , height: "40px"}}></img>
+			<a href="#homepage.html">
+				<img src={Logo} a href="homepage.html" style={{width: "200px" , height: "50px"}}></img>
 			</a>
 		</div>
+		<a href="#stream">Stream</a>
+		<a href="#browse">Browse</a>
+		<div class="search-container">
+			<form action="/searchpage.php">
+				<input type="text" placeholder="Search for..." name="search"></input>
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</div>
+		<a href="#User profile">User Profile</a>
+		<a href="#homepage.html">
+			<img src={Gear} a href="settings.html" style={{width: "40px" , height: "40px"}}></img>
+		</a>
 	</div>
   );
 };
