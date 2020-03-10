@@ -1,41 +1,25 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
+import Profile from "./profile/Profile";
 
-class Header extends React.Component {
-  renderProfileButton() {
-    let to = "/";
-    if (this.props.isSignedIn) {
-      to = `/profile/${this.props.currentUserId}`;
-    }
-    return (
-      <Link to={to} className="item">
-        Streamer
-      </Link>
-    );
-  }
-
-  render() {
-    return (
-      <div className="ui secondary pointing menu">
-        {this.renderProfileButton()}
-        <div className="right menu">
-          <Link to="/" className="item">
-            All Streams
-          </Link>
-          <GoogleAuth />
-        </div>
+const Header = () => {
+  return (
+    <div className="ui secondary pointing menu">
+      <ul class="headList">
+        <li class="headOption"><a class="headLink" href="">Test1</a></li>
+        <li class="headOption"><a class="headLink" href="">Test2</a></li>
+        <li class="headOption"><a class="headLink" href="">Test3</a></li>
+      </ul>
+      <div className="right menu">
+        <Link to="/" className="item">
+          All Streams
+        </Link>
+        <Profile />
+        <GoogleAuth />
       </div>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    currentUserId: state.auth.userId,
-    isSignedIn: state.auth.isSignedIn
-  };
+    </div>
+  );
 };
 
-export default connect(mapStateToProps, null)(Header);
+export default Header;
