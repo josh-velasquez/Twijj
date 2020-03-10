@@ -1,27 +1,20 @@
 import React from "react";
 
 class Settings extends React.Component {
-  renderList() {
-    return (
-      <div class="ui link list">
-        <a href="#" class="item">
-          Dark Mode
-        </a>
-        <a href="#" class="item">
-          Payment
-        </a>
-        <a href="#" class="item">
-          Messaging
-        </a>
-      </div>
-    );
-  }
   render() {
     return (
       <h2 class="ui header">
-        <i class="settings icon small"></i>
         <div class="content">
-          <div class="sub header">Settings</div>
+          <div class="ui compact menu">
+            <div class="ui simple dropdown item">
+              <i class="settings icon small"></i>
+              <div class="menu">
+                <div class="item">Dark Mode</div>
+                <div class="item">Payment</div>
+                <div class="item">Messaging</div>
+              </div>
+            </div>
+          </div>
         </div>
       </h2>
     );
