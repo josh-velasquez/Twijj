@@ -7,6 +7,7 @@ import StreamList from "./streams/StreamList";
 import StreamShow from "./streams/StreamShow";
 import ProfileModal from "./profile/ProfileModal";
 import Header from "./Header";
+import SideNav from "./SideNav";
 import history from "../history";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <Router history={history}>
         <div>
           <Header />
+		  <SideNav />
           <Switch>
             <Route path="/" exact component={StreamList} />
             <Route path="/streams/new" exact component={StreamCreate} />
