@@ -1,11 +1,12 @@
 import React from "react";
 import _ from "lodash";
-import Modal from "./Modal";
-import history from "../history";
+import Modal from "../Modal";
+import history from "../../history";
 import { connect } from "react-redux";
-import { fetchProfile, editProfile } from "../actions";
+import { fetchProfile, editProfile } from "../../actions";
 import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import Placeholder from "./profile.jpeg";
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -53,11 +54,23 @@ class Profile extends React.Component {
     );
   };
 
+  renderTextArea = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <textarea {...input} autoComplete="off" />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+
   renderContent() {
     return (
       <form className="ui form error">
+        <img src={Placeholder} className="ui image centered circular" height="150" />
         <Field name="username" component={this.renderInput} label="Username" />
-        <Field name="bio" component={this.renderInput} label="Bio" />
+        <Field name="bio" component={this.renderTextArea} label="Bio" />
       </form>
     );
   }
