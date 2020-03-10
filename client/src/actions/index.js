@@ -7,7 +7,9 @@ import {
   FETCH_STREAMS,
   FETCH_STREAM,
   DELETE_STREAM,
-  EDIT_STREAM
+  EDIT_STREAM,
+  FETCH_PROFILE,
+  EDIT_PROFILE
 } from "./types";
 export const signIn = userId => {
   return {
@@ -47,5 +49,16 @@ export const editStream = (id, formValues) => async dispatch => {
 export const deleteStream = id => async dispatch => {
   await streams.delete(`/streams/${id}`);
   dispatch({ type: DELETE_STREAM, payload: id });
+  history.push("/");
+};
+
+export const fetchProfile = id => async dispatch => {
+  const response = await streams.get(`/profiles/${id}`);
+  dispatch({ type: FETCH_PROFILE, payload: response.data });
+};
+
+export const editProfile = (id, formValues) => async dispatch => {
+  const response = await streams.patch(`/profiles/${id}`, formValues);
+  dispatch({ type: EDIT_PROFILE, payload: response.data });
   history.push("/");
 };

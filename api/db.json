@@ -4,6 +4,19 @@
       "title": "My Stream",
       "description": "Test",
       "id": 3
+    },
+    {
+      "title": "STream",
+      "description": "wadasda",
+      "userId": "100464765331499933792",
+      "id": 4
+    }
+  ],
+  "profiles": [
+    {
+      "id": "100464765331499933792",
+      "username": "Jeff",
+      "bio": "This is a bio"
     }
   ]
 }
