@@ -14,24 +14,26 @@ import Gear from "./gear.png";
 
 const Header = () => {
   return (
-	<div class="topnav">
+	<div class="ui secondary  menu">
 		<div id="logo">
 			<a href="#homepage.html">
 				<img src={Logo} a href="homepage.html" style={{width: "200px" , height: "50px"}}></img>
 			</a>
 		</div>
-		<a href="#stream">Stream</a>
-		<a href="#browse">Browse</a>
-		<div class="search-container">
-			<form action="/searchpage.php">
-				<input type="text" placeholder="Search for..." name="search"></input>
-				<button type="submit"><i class="fa fa-search"></i></button>
-			</form>
+		<a class="item" href="#stream">Stream</a>
+		<a class="item" href="#browse">Browse</a>
+		<div class="right menu">
+			<div class="item">
+			  <div class="ui icon input">
+				<input type="text" placeholder="Search..."/>
+				<i class="search link icon"></i>
+			  </div>
+			</div>
+			<GoogleAuth/>
+			<a class="item" href="#homepage.html">
+				<img src={Gear} a href="settings.html" style={{width: "40px" , height: "40px"}}></img>
+			</a>
 		</div>
-		<a href="#User profile">User Profile</a>
-		<a href="#homepage.html">
-			<img src={Gear} a href="settings.html" style={{width: "40px" , height: "40px"}}></img>
-		</a>
 	</div>
   );
 };
