@@ -16,17 +16,17 @@ const Header = () => {
   return (
 	<div class="ui secondary  menu">
 		<div id="logo">
-			<a href="#homepage.html">
-				<img src={Logo} a href="homepage.html" style={{width: "200px" , height: "50px"}}></img>
-			</a>
+		<a href="#homepage.html">
+			<img src={Logo} style={{width: "200px" , height: "50px"}}></img>
+		</a>
 		</div>
-		<a class="item" href="#stream">Stream</a>
-		<a class="item" href="#browse">Browse</a>
-		<div class="right menu">
-			<div class="item">
-			  <div class="ui icon input">
+		<a style={{color: "white"}} className="item" href="#stream">Stream</a>
+		<a style={{color: "white"}} className="item" href="#browse">Browse</a>
+		<div className="right menu">
+			<div className="item">
+			  <div className="ui icon input">
 				<input type="text" placeholder="Search..."/>
-				<i class="search link icon"></i>
+				<i className="search link icon"></i>
 			  </div>
 			</div>
 			<GoogleAuth/>
