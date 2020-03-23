@@ -14,27 +14,25 @@ import Gear from "./gear.png";
 
 const Header = () => {
   return (
-	<div class="ui secondary  menu">
-		<div id="logo">
-		<a href="#homepage.html">
-			<img src={Logo} style={{width: "200px" , height: "50px"}}></img>
-		</a>
-		</div>
-		<a style={{color: "white"}} className="item" href="#stream">Stream</a>
-		<a style={{color: "white"}} className="item" href="#browse">Browse</a>
-		<div className="right menu">
-			<div className="item">
-			  <div className="ui icon input">
-				<input type="text" placeholder="Search..."/>
-				<i className="search link icon"></i>
-			  </div>
-			</div>
-			<GoogleAuth/>
-			<a class="item" href="#homepage.html">
-				<img src={Gear} a href="settings.html" style={{width: "40px" , height: "40px"}}></img>
-			</a>
-		</div>
-	</div>
+    <div className="ui secondary pointing menu" style={{backgroundColor: "black"}}>
+      <div id="logo">
+      <Link to="/">
+          <img src={Logo} style={{width: "200px" , height: "50px"}}></img>
+      </Link>
+      </div>
+        <Link style={{color: "white"}} className="item">Stream</Link>
+        <Link style={{color: "white"}} className="item">Browse</Link>
+        <div className="right menu">
+          <div className="item">
+            <div className="ui icon input">
+              <input type="text" placeholder="Search..."/>
+              <i className="search link icon"></i>
+            </div>
+          </div>
+          <GoogleAuth />
+          <Settings />
+      </div>
+    </div>
   );
 };
 

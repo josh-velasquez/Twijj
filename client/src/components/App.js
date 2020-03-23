@@ -12,19 +12,23 @@ import history from "../history";
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div>
       <Router history={history}>
-        <div>
-          <Header />
-		  <SideNav />
-          <Switch>
-            <Route path="/" exact component={StreamList} />
-            <Route path="/streams/new" exact component={StreamCreate} />
-            <Route path="/streams/edit/:id" exact component={StreamEdit} />
-            <Route path="/streams/delete/:id" exact component={StreamDelete} />
-            <Route path="/streams/:id" exact component={StreamShow} />
-            <Route path="/profile/:id" exact component={ProfileModal} />
-          </Switch>
+        <Header/>
+        <div style={{display: "flex"}}>
+          <SideNav/>
+          <div className="ui container">
+              <div>
+                <Switch>
+                  <Route path="/" exact component={StreamList} />
+                  <Route path="/streams/new" exact component={StreamCreate} />
+                   <Route path="/streams/edit/:id" exact component={StreamEdit} />
+                  <Route path="/streams/delete/:id" exact component={StreamDelete} />
+                  <Route path="/streams/:id" exact component={StreamShow} />
+                  <Route path="/profile/:id" exact component={ProfileModal} />
+                </Switch>
+              </div>
+          </div>
         </div>
       </Router>
     </div>

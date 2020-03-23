@@ -35,9 +35,9 @@ render() {
   return (
 	<div class="sidenav">
 		<div className="subIcon">
-			<a href="#sm.html">
+			<span>
 				<img src={OpenPNG} style={{width: "50px" , height: "50px"}}></img>
-			</a>
+			</span>
 		</div>
 		{this.displaySubscribers()}
 	</div>
