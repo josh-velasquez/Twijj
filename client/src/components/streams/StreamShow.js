@@ -2,6 +2,7 @@ import React from "react";
 import flv from "flv.js";
 import { connect } from "react-redux";
 import { fetchStream } from "../../actions";
+import StreamChat from "./StreamChat";
 
 class StreamShow extends React.Component {
   constructor(props) {
@@ -41,10 +42,13 @@ class StreamShow extends React.Component {
     }
     const { title, description } = this.props.stream;
     return (
-      <div>
-        <video ref={this.videoRef} style={{ width: "100%" }} controls />
-        <h1>{title}</h1>
-        <h5>{description}</h5>
+      <div class="ui grid">
+        <div id="stream-container" class="twelve wide column">
+          <video ref={this.videoRef} style={{ width: "100%" }} controls />
+          <h1>{title}</h1>
+          <h5>{description}</h5>
+        </div>
+        <StreamChat />
       </div>
     );
   }
