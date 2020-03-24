@@ -6,11 +6,6 @@ import Settings from "./Settings";
 
 import "./style.css";
 import Logo from "./logo.png";
-import Gear from "./gear.png";
-
-import "./style.css";
-import Logo from "./logo.png";
-import Gear from "./gear.png";
 
 const Header = () => {
   return (
