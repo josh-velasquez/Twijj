@@ -17,7 +17,7 @@ const App = () => {
         <Header/>
         <div style={{display: "flex"}}>
           <SideNav/>
-          <div className="ui container">
+          <div className="ui content-main">
               <div>
                 <Switch>
                   <Route path="/" exact component={StreamList} />
