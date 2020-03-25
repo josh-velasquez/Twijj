@@ -101,5 +101,9 @@ npm install --save <dependency>
 To deploy the client code to firebase, run the following command on the client folder:
 npm run build
 
-This will generate a build folder. Copy the contents of the build folder to the dist folder and run the command:
+This will generate a build folder. Run the following command to deploy to website:
 firebase deploy
+
+
+Website Link:
+https://twijj-271803.web.app/
