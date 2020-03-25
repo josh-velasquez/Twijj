@@ -24,7 +24,7 @@ class StreamChat extends React.Component {
           </li>
         </ul>
         <form action="" onSubmit={this.handleSubmit}>
-          <input id="message-box" autocomplete="off"/>
+          <input id="message-box" autoComplete="off"/>
           <button>Chat</button>
         </form>
       </div>
