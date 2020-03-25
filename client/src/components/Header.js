@@ -24,6 +24,7 @@ const Header = () => {
               <i className="search link icon"></i>
             </div>
           </div>
+          <Profile />
           <GoogleAuth />
           <Settings />
       </div>
