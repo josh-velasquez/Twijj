@@ -1,8 +1,8 @@
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD1AvhSoik7K4H-8VjkfN2puZ-9JHz6vbI",
+const app = firebase.initializeApp({
+  apiKey: "AIzaSyA-0ES8kK0A7YJFZVNIsM1xQV-dE9BY1jA",
   authDomain: "twijj-271803.firebaseapp.com",
   databaseURL: "https://twijj-271803.firebaseio.com",
   projectId: "twijj-271803",
@@ -10,9 +10,7 @@ const firebaseConfig = {
   messagingSenderId: "434963010544",
   appId: "1:434963010544:web:6d56670aa1caa0ccab4335",
   measurementId: "G-HF3KRVS2FV"
-};
+});
+const database = app.firestore();
 
-firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({ timestampsInSnapshots: true });
-
-export default firebase;
+export default database;
