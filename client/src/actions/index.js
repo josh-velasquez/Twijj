@@ -46,7 +46,7 @@ export const createStream = formValues => async (dispatch, getState) => {
 };
 
 export const fetchStreams = () => async dispatch => {
-  await database
+  database
     .collection("streams")
     .get()
     .then(querySnapshot => {
