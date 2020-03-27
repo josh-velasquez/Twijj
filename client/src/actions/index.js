@@ -12,21 +12,6 @@ import {
   EDIT_PROFILE
 } from "./types";
 import database from "../config/firebaseDb";
-const uuid = require("uuid/v4");
-
-// database
-//   .collection("streams")
-//   .add({
-//     description: "TESTING description 1",
-//     title: "Test title",
-//     userid: "Testing id"
-//   })
-//   .then(function() {
-//     console.log("ADDED");
-//   })
-//   .catch(function(error) {
-//     console.log("ERROR");
-//   });
 
 export const signIn = userId => {
   return {
@@ -96,6 +81,7 @@ export const editStream = (id, formValues) => async dispatch => {
       description: formValues.description
     })
     .then(function() {
+      dispatch({ type: EDIT_STREAM, payload: formValues });
       history.push("/");
     })
     .catch(function(error) {
