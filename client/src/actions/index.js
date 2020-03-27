@@ -12,6 +12,7 @@ import {
   EDIT_PROFILE
 } from "./types";
 import database from "../config/firebaseDb";
+const uuid = require("uuid/v4");
 
 // database
 //   .collection("streams")
@@ -48,7 +49,8 @@ export const createStream = formValues => async (dispatch, getState) => {
   };
   database
     .collection("streams")
-    .add(payload)
+    .doc(userId)
+    .set(payload)
     .then(() => {
       dispatch({ type: CREATE_STREAM, payload: payload });
       history.push("/");
@@ -83,20 +85,36 @@ export const fetchStream = id => async dispatch => {
     .catch(function(error) {
       console.log("Error fetching a stream: " + error);
     });
-  // const response = await streams.get(`/streams/${id}`);
-  // dispatch({ type: FETCH_STREAM, payload: response.data });
 };
 
 export const editStream = (id, formValues) => async dispatch => {
-  const response = await streams.patch(`/streams/${id}`, formValues);
-  dispatch({ type: EDIT_STREAM, payload: response.data });
-  history.push("/");
+  database
+    .collection("streams")
+    .doc(id)
+    .update({
+      title: formValues.title,
+      description: formValues.description
+    })
+    .then(function() {
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.log("Failed to update stream: " + error);
+    });
 };
 
 export const deleteStream = id => async dispatch => {
-  await streams.delete(`/streams/${id}`);
-  dispatch({ type: DELETE_STREAM, payload: id });
-  history.push("/");
+  database
+    .collection("streams")
+    .doc(id)
+    .delete()
+    .then(function() {
+      dispatch({ type: DELETE_STREAM, payload: id });
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.log("Failed to delete stream: " + error);
+    });
 };
 
 export const fetchProfile = id => async dispatch => {
