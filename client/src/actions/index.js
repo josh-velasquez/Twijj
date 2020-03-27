@@ -40,32 +40,26 @@ export const signOut = () => {
 };
 
 export const createStream = formValues => async (dispatch, getState) => {
-  // console.log(formValues);
   const { userId } = getState().auth;
+  const payload = {
+    description: formValues.description,
+    title: formValues.title,
+    userid: userId
+  };
   database
     .collection("streams")
-    .add({
-      description: formValues.description,
-      title: formValues.title,
-      userid: userId
-    })
-    .then(querySnapshot => {
-      const data = querySnapshot.docs.map(doc => doc.data());
-      // dispatch({ type: CREATE_STREAM, payload: data });
-      // history.push("/");
+    .add(payload)
+    .then(() => {
+      dispatch({ type: CREATE_STREAM, payload: payload });
+      history.push("/");
     })
     .catch(function(error) {
       console.log("Error canot create stream: " + error);
     });
-
-  // const { userId } = getState().auth;
-  // const response = await streams.post("/streams", { ...formValues, userId });
-  // dispatch({ type: CREATE_STREAM, payload: response.data });
-  // history.push("/");
 };
 
 export const fetchStreams = () => async dispatch => {
-  database
+  await database
     .collection("streams")
     .get()
     .then(querySnapshot => {
@@ -75,8 +69,6 @@ export const fetchStreams = () => async dispatch => {
     .catch(function(error) {
       console.log("Error fetching streams: " + error);
     });
-  // const response = await streams.get("/streams");
-  // dispatch({ type: FETCH_STREAMS, payload: response.data });
 };
 
 export const fetchStream = id => async dispatch => {
