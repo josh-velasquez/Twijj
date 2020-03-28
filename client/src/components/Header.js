@@ -24,6 +24,9 @@ const Header = () => {
           </div>
         </div>
         <div className="item">
+          <Profile />
+        </div>
+        <div className="item">
           <GoogleAuth />
         </div>
         <div className="item">

@@ -9,7 +9,7 @@ class Profile extends React.Component {
       to = `/profile/${this.props.currentUserId}`;
     }
     return (
-      <Link to={to} className="item">
+      <Link to={to} className="item" style={{color: "white"}}>
         Streamer
       </Link>
     );
