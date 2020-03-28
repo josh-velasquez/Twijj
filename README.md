@@ -95,3 +95,15 @@ https://medium.com/@nabendu82/create-a-twitch-clone-using-react-7-be3d116acffe
 
 To install a new dependency, just enter the following (this saves it to the package json):
 npm install --save <dependency>
+
+
+## Deploying the project to firebase
+To deploy the client code to firebase, run the following command on the client folder:
+npm run build
+
+This will generate a build folder. Run the following command to deploy to website:
+firebase deploy
+
+
+Website Link:
+https://twijj-271803.web.app/
