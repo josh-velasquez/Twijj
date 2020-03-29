@@ -6,4 +6,5 @@ export const FETCH_STREAM = "FETCH_STREAM";
 export const DELETE_STREAM = "DELETE_STREAM";
 export const EDIT_STREAM = "EDIT_STREAM";
 export const FETCH_PROFILE = "FETCH_PROFILE";
+export const CREATE_PROFILE = "CREATE_PROFILE"
 export const EDIT_PROFILE = "EDIT_PROFILE";

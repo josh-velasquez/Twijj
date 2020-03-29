@@ -9,14 +9,15 @@ import {
   DELETE_STREAM,
   EDIT_STREAM,
   FETCH_PROFILE,
+  CREATE_PROFILE,
   EDIT_PROFILE
 } from "./types";
 import database from "../config/firebaseDb";
 
-export const signIn = userId => {
+export const signIn = (userId, userFullName, userEmail) => {
   return {
     type: SIGN_IN,
-    payload: userId
+    payload: { userId, userFullName, userEmail }
   };
 };
 export const signOut = () => {
@@ -116,6 +117,27 @@ export const fetchProfile = id => async dispatch => {
       console.log("Error fetching a profile: " + error);
     });
 };
+
+export const createProfile = defaultData => async dispatch => {
+    const payload = {
+      bio: "This is a default bio",
+      email: defaultData.email,
+      name: defaultData.name,
+      userid: defaultData.id,
+      username: defaultData.name
+    };
+    database
+      .collection("users")
+      .doc(defaultData.id)
+      .set(payload)
+      .then(() => {
+        dispatch({ type: CREATE_PROFILE, payload: payload });
+        history.push("/");
+    })
+    .catch(function(error) {
+      console.error("Error cannot create profile: " + error);
+    });
+}
 
 export const editProfile = (id, formValues) => async dispatch => {
   database
