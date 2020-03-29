@@ -23,9 +23,7 @@ const Header = () => {
             <i className="search link icon"></i>
           </div>
         </div>
-        <div className="item">
-          <Profile />
-        </div>
+        <Profile />
         <div className="item">
           <GoogleAuth />
         </div>
