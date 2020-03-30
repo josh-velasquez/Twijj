@@ -73,10 +73,13 @@ export const fetchStream = id => async dispatch => {
           const data_user = querySnapshot.docs.map(doc => doc.data())[0];
           data_stream.user_info = data_user;
           dispatch({ type: FETCH_STREAM, payload: data_stream });
+        })
+        .catch(function(error) {
+          console.error("Error fetching user info for stream: " + error);
         });
     })
     .catch(function(error) {
-      console.log("Error fetching a stream: " + error);
+      console.error("Error fetching a stream: " + error);
     });
 };
 
