@@ -40,18 +40,22 @@ class StreamShow extends React.Component {
     if (!this.props.stream) {
       return <div>Loading...</div>;
     }
-    if (!this.props.profile) {
-      this.props.fetchProfile(this.props.stream.userId);
-    }
     const { title, description } = this.props.stream;
-    const username = this.props.profile && this.props.profile.username;
+    const username = this.props.stream.user_info && this.props.stream.user_info.username;
     return (
       <div class="ui grid">
         <div id="stream-container" class="twelve wide column">
-          <video ref={this.videoRef} style={{ width: "100%" }} controls />
-          <h1>{title}</h1>
-          <h5>{description}</h5>
-          <h5>{username || 'Username'}</h5>
+          <div id="stream-container-info" class="ui grid">
+            <div class="twelve wide column middle">{username || 'Username'}'s Stream</div>
+            <div class="four wide column right aligned">
+              <button class="ui red button">Subscribe</button>
+            </div>
+          </div>
+          <div id="stream-container-content" class="ui grid">
+            <video ref={this.videoRef} style={{ width: "100%" }} controls />
+            <h1>{title}</h1>
+            <h5>{description}</h5>
+          </div>
         </div>
         <StreamChat />
       </div>
@@ -60,12 +64,7 @@ class StreamShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const streamId = ownProps.match.params.id;
-  const userId = state.streams[streamId] && state.streams[streamId].userId;
-  return {
-    stream: state.streams[streamId],
-    profile: state.profiles[userId]
-  };
+  return { stream: state.streams[ownProps.match.params.id] };
 };
 
 export default connect(
