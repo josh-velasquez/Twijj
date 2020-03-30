@@ -104,40 +104,37 @@ export const deleteStream = id => async dispatch => {
     });
 };
 
-export const fetchProfile = id => async dispatch => {
+export const fetchProfile = fetchData => async dispatch => {
   database
     .collection("users")
-    .where("userid", "==", id)
+    .where("userid", "==", fetchData.id)
     .get()
     .then(querySnapshot => {
       const data = querySnapshot.docs.map(doc => doc.data());
       dispatch({ type: FETCH_PROFILE, payload: data[0] });
     })
     .catch(function(error) {
-      console.error("Error fetching a profile: " + error);
+      console.error("Error fetching a profile. Attempting to create new profile:" + error);
+      const payload = {
+        bio: "This is a default bio",
+        email: fetchData.email,
+        name: fetchData.name,
+        userid: fetchData.id,
+        username: fetchData.name
+      };
+      database
+        .collection("users")
+        .doc(fetchData.id)
+        .set(payload)
+        .then(() => {
+          dispatch({ type: CREATE_PROFILE, payload: payload });
+          history.push("/");
+      })
+      .catch(function(error) {
+        console.error("Error cannot create profile: " + error);
+      });
     });
 };
-
-export const createProfile = defaultData => async dispatch => {
-    const payload = {
-      bio: "This is a default bio",
-      email: defaultData.email,
-      name: defaultData.name,
-      userid: defaultData.id,
-      username: defaultData.name
-    };
-    database
-      .collection("users")
-      .doc(defaultData.id)
-      .set(payload)
-      .then(() => {
-        dispatch({ type: CREATE_PROFILE, payload: payload });
-        history.push("/");
-    })
-    .catch(function(error) {
-      console.error("Error cannot create profile: " + error);
-    });
-}
 
 export const editProfile = (id, formValues) => async dispatch => {
   database

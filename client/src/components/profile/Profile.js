@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchProfile, createProfile } from "../../actions";
+import { fetchProfile } from "../../actions";
 
 class Profile extends React.Component {
   componentDidUpdate() {
     if (this.props.currentUserId != null && this.props.profile == null) {
-      this.props.fetchProfile(this.props.currentUserId);
+      this.props.fetchProfile({id: this.props.currentUserId, email: this.props.currentUserEmail , name: this.props.currentUserName});
     }
   }
 
@@ -22,10 +22,6 @@ class Profile extends React.Component {
         </Link>
       );
     }
-    else if (this.props.isSignedIn && this.props.profile == null){
-      this.props.createProfile({id: this.props.currentUserId, email: this.props.currentUserEmail , name: this.props.currentUserName});
-      return <div></div>
-    }
     return <div></div>;
   }
 }
@@ -40,4 +36,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchProfile, createProfile })(Profile);
+export default connect(mapStateToProps, { fetchProfile })(Profile);
