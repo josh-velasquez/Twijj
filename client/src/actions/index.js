@@ -114,7 +114,7 @@ export const fetchProfile = id => async dispatch => {
       dispatch({ type: FETCH_PROFILE, payload: data[0] });
     })
     .catch(function(error) {
-      console.log("Error fetching a profile: " + error);
+      console.error("Error fetching a profile: " + error);
     });
 };
 
@@ -152,6 +152,6 @@ export const editProfile = (id, formValues) => async dispatch => {
       history.push("/");
     })
     .catch(function(error) {
-      console.log("Failed to update profile: " + error);
+      console.error("Failed to update profile: " + error);
     });
 };

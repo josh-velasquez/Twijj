@@ -31,7 +31,6 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     profile: state.profiles[state.auth.userId],
     currentUserId: state.auth.userId,
