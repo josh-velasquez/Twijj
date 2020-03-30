@@ -27,21 +27,43 @@ export const signOut = () => {
 
 export const createStream = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const payload = {
-    description: formValues.description,
-    title: formValues.title,
-    userid: userId
-  };
+  let streamLink;
   database
-    .collection("streams")
-    .doc(userId)
-    .set(payload)
-    .then(() => {
-      dispatch({ type: CREATE_STREAM, payload: payload });
-      history.push("/");
+    .collection("streamlinks")
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+
+      for (var i = 0; i < data.length; i++) {
+        if (!data[i].used) {
+          streamLink = data[i].link;
+          break;
+        }
+      }
+      if (streamLink == null) {
+        console.log("No more stream links");
+      } else {
+        const payload = {
+          description: formValues.description,
+          title: formValues.title,
+          userid: userId,
+          streamlink: streamLink
+        };
+        database
+          .collection("streams")
+          .doc(userId)
+          .set(payload)
+          .then(() => {
+            dispatch({ type: CREATE_STREAM, payload: payload });
+            history.push("/");
+          })
+          .catch(function(error) {
+            console.log("Error canot create stream: " + error);
+          });
+      }
     })
     .catch(function(error) {
-      console.log("Error canot create stream: " + error);
+      console.log("Error fetching streams: " + error);
     });
 };
 
