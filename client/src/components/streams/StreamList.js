@@ -9,31 +9,42 @@ class StreamList extends React.Component {
   }
 
   renderList() {
-    return this.props.streams.map(stream => {
+    if (this.props.streams === undefined || this.props.streams.length === 0) {
       return (
-        <div className="item" key={stream.id}>
-          {this.renderAdmin(stream)}
-          <i className="large middle aligned icon camera" />
-          <div className="content">
-            <Link to={`/streams/${stream.id}`} className="header">
-              {stream.title}
-            </Link>
-            <div className="description">{stream.description}</div>
-          </div>
+        <div>
+          <h4>Sorry, no streams available right now.</h4>
         </div>
       );
-    });
+    } else {
+      return this.props.streams.map(stream => {
+        return (
+          <div className="item" key={stream.userid}>
+            {this.renderAdmin(stream)}
+            <i className="large middle aligned icon camera" />
+            <div className="content">
+              <Link to={`/streams/${stream.userid}`} className="header">
+                {stream.title}
+              </Link>
+              <div className="description">{stream.description}</div>
+            </div>
+          </div>
+        );
+      });
+    }
   }
 
   renderAdmin(stream) {
-    if (stream.userId === this.props.currentUserId) {
+    if (stream.userid === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">
+          <Link
+            to={`/streams/edit/${stream.userid}`}
+            className="ui button primary"
+          >
             Edit
           </Link>
           <Link
-            to={`/streams/delete/${stream.id}`}
+            to={`/streams/delete/${stream.userid}`}
             className="ui button negative"
           >
             Delete
@@ -73,7 +84,4 @@ const mapStateToProps = state => {
     isSignedIn: state.auth.isSignedIn
   };
 };
-export default connect(
-  mapStateToProps,
-  { fetchStreams }
-)(StreamList);
+export default connect(mapStateToProps, { fetchStreams })(StreamList);

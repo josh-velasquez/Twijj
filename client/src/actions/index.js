@@ -11,6 +11,8 @@ import {
   FETCH_PROFILE,
   EDIT_PROFILE
 } from "./types";
+import database from "../config/firebaseDb";
+
 export const signIn = userId => {
   return {
     type: SIGN_IN,
@@ -25,40 +27,109 @@ export const signOut = () => {
 
 export const createStream = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await streams.post("/streams", { ...formValues, userId });
-  dispatch({ type: CREATE_STREAM, payload: response.data });
-  history.push("/");
+  const payload = {
+    description: formValues.description,
+    title: formValues.title,
+    userid: userId
+  };
+  database
+    .collection("streams")
+    .doc(userId)
+    .set(payload)
+    .then(() => {
+      dispatch({ type: CREATE_STREAM, payload: payload });
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.log("Error canot create stream: " + error);
+    });
 };
 
 export const fetchStreams = () => async dispatch => {
-  const response = await streams.get("/streams");
-  dispatch({ type: FETCH_STREAMS, payload: response.data });
+  database
+    .collection("streams")
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      dispatch({ type: FETCH_STREAMS, payload: data });
+    })
+    .catch(function(error) {
+      console.log("Error fetching streams: " + error);
+    });
 };
 
 export const fetchStream = id => async dispatch => {
-  const response = await streams.get(`/streams/${id}`);
-  dispatch({ type: FETCH_STREAM, payload: response.data });
+  database
+    .collection("streams")
+    .where("userid", "==", id)
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      dispatch({ type: FETCH_STREAM, payload: data[0] });
+    })
+    .catch(function(error) {
+      console.log("Error fetching a stream: " + error);
+    });
 };
 
 export const editStream = (id, formValues) => async dispatch => {
-  const response = await streams.patch(`/streams/${id}`, formValues);
-  dispatch({ type: EDIT_STREAM, payload: response.data });
-  history.push("/");
+  database
+    .collection("streams")
+    .doc(id)
+    .update({
+      title: formValues.title,
+      description: formValues.description
+    })
+    .then(function() {
+      dispatch({ type: EDIT_STREAM, payload: formValues });
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.log("Failed to update stream: " + error);
+    });
 };
 
 export const deleteStream = id => async dispatch => {
-  await streams.delete(`/streams/${id}`);
-  dispatch({ type: DELETE_STREAM, payload: id });
-  history.push("/");
+  database
+    .collection("streams")
+    .doc(id)
+    .delete()
+    .then(function() {
+      dispatch({ type: DELETE_STREAM, payload: id });
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.log("Failed to delete stream: " + error);
+    });
 };
 
 export const fetchProfile = id => async dispatch => {
-  const response = await streams.get(`/profiles/${id}`);
-  dispatch({ type: FETCH_PROFILE, payload: response.data });
+  database
+    .collection("users")
+    .where("userid", "==", id)
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      dispatch({ type: FETCH_PROFILE, payload: data[0] });
+    })
+    .catch(function(error) {
+      console.error("Error fetching a profile: " + error);
+    });
 };
 
 export const editProfile = (id, formValues) => async dispatch => {
-  const response = await streams.patch(`/profiles/${id}`, formValues);
-  dispatch({ type: EDIT_PROFILE, payload: response.data });
-  history.push("/");
+  database
+    .collection("users")
+    .doc(id)
+    .update({
+      username: formValues.username,
+      bio: formValues.bio
+    })
+    .then(function() {
+      dispatch({ type: EDIT_PROFILE, payload: formValues });
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.error("Failed to update profile: " + error);
+    });
 };
