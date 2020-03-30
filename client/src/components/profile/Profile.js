@@ -1,26 +1,37 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchProfile } from "../../actions";
 
 class Profile extends React.Component {
-  render() {
-    let to = "/";
-    if (this.props.isSignedIn) {
-      to = `/profile/${this.props.currentUserId}`;
+  componentDidUpdate() {
+    if (this.props.currentUserId != null && this.props.profile == null) {
+      this.props.fetchProfile(this.props.currentUserId);
     }
-    return (
-      <Link to={to} className="item" style={{color: "white"}}>
-        Streamer
-      </Link>
-    );
+  }
+
+  render() {
+    if (this.props.isSignedIn && this.props.profile != null) {
+      return (
+        <Link
+          to={`/profile/${this.props.currentUserId}`}
+          className="item"
+          style={{ color: "white" }}
+        >
+          {this.props.profile.username}
+        </Link>
+      );
+    }
+    return <div></div>;
   }
 }
 
 const mapStateToProps = state => {
   return {
+    profile: state.profiles[state.auth.userId],
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
   };
 };
 
-export default connect(mapStateToProps, null)(Profile);
+export default connect(mapStateToProps, { fetchProfile })(Profile);

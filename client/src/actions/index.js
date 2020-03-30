@@ -65,7 +65,7 @@ export const fetchStream = id => async dispatch => {
     .get()
     .then(querySnapshot => {
       const data = querySnapshot.docs.map(doc => doc.data());
-      dispatch({ type: FETCH_STREAM, payload: data });
+      dispatch({ type: FETCH_STREAM, payload: data[0] });
     })
     .catch(function(error) {
       console.log("Error fetching a stream: " + error);
@@ -104,12 +104,32 @@ export const deleteStream = id => async dispatch => {
 };
 
 export const fetchProfile = id => async dispatch => {
-  const response = await streams.get(`/profiles/${id}`);
-  dispatch({ type: FETCH_PROFILE, payload: response.data });
+  database
+    .collection("users")
+    .where("userid", "==", id)
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      dispatch({ type: FETCH_PROFILE, payload: data[0] });
+    })
+    .catch(function(error) {
+      console.error("Error fetching a profile: " + error);
+    });
 };
 
 export const editProfile = (id, formValues) => async dispatch => {
-  const response = await streams.patch(`/profiles/${id}`, formValues);
-  dispatch({ type: EDIT_PROFILE, payload: response.data });
-  history.push("/");
+  database
+    .collection("users")
+    .doc(id)
+    .update({
+      username: formValues.username,
+      bio: formValues.bio
+    })
+    .then(function() {
+      dispatch({ type: EDIT_PROFILE, payload: formValues });
+      history.push("/");
+    })
+    .catch(function(error) {
+      console.error("Failed to update profile: " + error);
+    });
 };
