@@ -15,6 +15,7 @@ class Profile extends React.Component {
 
   onSubmit = formValues => {
     this.props.editProfile(this.props.match.params.id, formValues);
+    this.props.fetchProfile({id:this.props.match.params.id});
   };
 
   renderActions() {
