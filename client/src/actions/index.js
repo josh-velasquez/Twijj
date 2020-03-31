@@ -1,6 +1,7 @@
 import streams from "../apis/streams";
 import history from "../history";
 import {
+  AWAIT_SIGN_IN,
   SIGN_IN,
   SIGN_OUT,
   AUTH_FAIL,
@@ -15,10 +16,16 @@ import {
 } from "./types";
 import database from "../config/firebaseDb";
 
-export const signIn = (userId, userFullName, userEmail) => {
+export const awaitSignIn = (userId, userFullName, userEmail) => {
+  return {
+    type: AWAIT_SIGN_IN,
+    payload: { userId, userFullName, userEmail }
+  };
+};
+
+export const signIn = () => {
   return {
     type: SIGN_IN,
-    payload: { userId, userFullName, userEmail }
   };
 };
 export const signOut = () => {
@@ -119,6 +126,7 @@ const createProfile = fetchData => async dispatch => {
     .set(payload)
     .then(() => {
       dispatch({ type: CREATE_PROFILE, payload: payload });
+      dispatch({ type: SIGN_IN });
       history.push("/");
   })
   .catch(function(error) {
@@ -139,6 +147,7 @@ export const fetchProfile = fetchData => async dispatch => {
       else {
         const data = querySnapshot.docs.map(doc => doc.data());
         dispatch({ type: FETCH_PROFILE, payload: data[0] });
+        dispatch({ type: SIGN_IN });
       }
     })
     .catch(function(error) {
