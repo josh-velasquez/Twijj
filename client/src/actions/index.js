@@ -111,7 +111,6 @@ export const fetchProfile = fetchData => async dispatch => {
     .get()
     .then(querySnapshot => {
       if(querySnapshot.empty){
-        console.log("creating new profile");
         const payload = {
           bio: "This is a default bio",
           email: fetchData.email,
@@ -131,8 +130,10 @@ export const fetchProfile = fetchData => async dispatch => {
         console.error("Error cannot create profile: " + error);
         });
       }
-      const data = querySnapshot.docs.map(doc => doc.data());
-      dispatch({ type: FETCH_PROFILE, payload: data[0] });
+      else {
+        const data = querySnapshot.docs.map(doc => doc.data());
+        dispatch({ type: FETCH_PROFILE, payload: data[0] });
+      }
     })
     .catch(function(error) {
       console.error("Error fetching a profile: " + error);
