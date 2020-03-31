@@ -112,17 +112,17 @@ export const deleteStream = id => async dispatch => {
     });
 };
 
-const createProfile = fetchData => async dispatch => {
+const createProfile = createData => async dispatch => {
   const payload = {
     bio: "This is a default bio",
-    email: fetchData.email,
-    name: fetchData.name,
-    userid: fetchData.id,
-    username: fetchData.name
+    email: createData.email,
+    name: createData.name,
+    userid: createData.id,
+    username: createData.name
   };
   database
     .collection("users")
-    .doc(fetchData.id)
+    .doc(createData.id)
     .set(payload)
     .then(() => {
       dispatch({ type: CREATE_PROFILE, payload: payload });
@@ -152,6 +152,7 @@ export const fetchProfile = fetchData => async dispatch => {
     })
     .catch(function(error) {
       console.error("Error fetching a profile: " + error);
+      dispatch({ type: AUTH_FAIL });
     });
 };
 
