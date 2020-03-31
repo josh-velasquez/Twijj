@@ -110,29 +110,32 @@ export const fetchProfile = fetchData => async dispatch => {
     .where("userid", "==", fetchData.id)
     .get()
     .then(querySnapshot => {
+      if(querySnapshot.empty){
+        console.log("creating new profile");
+        const payload = {
+          bio: "This is a default bio",
+          email: fetchData.email,
+          name: fetchData.name,
+          userid: fetchData.id,
+          username: fetchData.name
+        };
+        database
+          .collection("users")
+          .doc(fetchData.id)
+          .set(payload)
+          .then(() => {
+            dispatch({ type: CREATE_PROFILE, payload: payload });
+            history.push("/");
+        })
+        .catch(function(error) {
+        console.error("Error cannot create profile: " + error);
+        });
+      }
       const data = querySnapshot.docs.map(doc => doc.data());
       dispatch({ type: FETCH_PROFILE, payload: data[0] });
     })
     .catch(function(error) {
-      console.error("Error fetching a profile. Attempting to create new profile:" + error);
-      const payload = {
-        bio: "This is a default bio",
-        email: fetchData.email,
-        name: fetchData.name,
-        userid: fetchData.id,
-        username: fetchData.name
-      };
-      database
-        .collection("users")
-        .doc(fetchData.id)
-        .set(payload)
-        .then(() => {
-          dispatch({ type: CREATE_PROFILE, payload: payload });
-          history.push("/");
-      })
-      .catch(function(error) {
-        console.error("Error cannot create profile: " + error);
-      });
+      console.error("Error fetching a profile: " + error);
     });
 };
 
