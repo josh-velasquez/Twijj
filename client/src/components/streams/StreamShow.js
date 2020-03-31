@@ -18,7 +18,6 @@ class StreamShow extends React.Component {
     if (this.player || !this.props.stream) {
       return;
     }
-    console.log(this.props.stream);
     return <div id="streamPlayer">{playVideo(this.props.stream)}</div>;
   }
 

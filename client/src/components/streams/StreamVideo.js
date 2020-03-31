@@ -1,6 +1,5 @@
 export const playVideo = videoInfo => {
-  console.log(window.WowzaPlayer);
-  window.WowzaPlayer.create("streamPlayer", {
+  window.WowzaPlayer.create(window.document.getElementById("streamPlayer"), {
     license: "PLAY2-3z9m4-kcyBU-Jk3Vz-wyVjN-DuHYn",
     sources: [
       {
