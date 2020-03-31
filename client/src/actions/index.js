@@ -3,6 +3,7 @@ import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
+  AUTH_FAIL,
   CREATE_STREAM,
   FETCH_STREAMS,
   FETCH_STREAM,
@@ -104,6 +105,28 @@ export const deleteStream = id => async dispatch => {
     });
 };
 
+const createProfile = fetchData => async dispatch => {
+  const payload = {
+    bio: "This is a default bio",
+    email: fetchData.email,
+    name: fetchData.name,
+    userid: fetchData.id,
+    username: fetchData.name
+  };
+  database
+    .collection("users")
+    .doc(fetchData.id)
+    .set(payload)
+    .then(() => {
+      dispatch({ type: CREATE_PROFILE, payload: payload });
+      history.push("/");
+  })
+  .catch(function(error) {
+    console.error("Error cannot create profile: " + error);
+    dispatch({ type: AUTH_FAIL });
+  });
+};
+
 export const fetchProfile = fetchData => async dispatch => {
   database
     .collection("users")
@@ -111,24 +134,7 @@ export const fetchProfile = fetchData => async dispatch => {
     .get()
     .then(querySnapshot => {
       if(querySnapshot.empty){
-        const payload = {
-          bio: "This is a default bio",
-          email: fetchData.email,
-          name: fetchData.name,
-          userid: fetchData.id,
-          username: fetchData.name
-        };
-        database
-          .collection("users")
-          .doc(fetchData.id)
-          .set(payload)
-          .then(() => {
-            dispatch({ type: CREATE_PROFILE, payload: payload });
-            history.push("/");
-        })
-        .catch(function(error) {
-        console.error("Error cannot create profile: " + error);
-        });
+        dispatch(createProfile(fetchData));
       }
       else {
         const data = querySnapshot.docs.map(doc => doc.data());
