@@ -13,7 +13,7 @@ export default (state = INITAL_STATE, action) => {
     case SIGN_IN:
       return { ...state, isSignedIn: true};
     case SIGN_OUT:
-      return { ...state, isSignedIn: false, userId: null, rejectSignIn: false };
+      return { ...state, isSignedIn: false, userId: null, userFullName: null, rejectSignIn: false, userEmail: null};
     case AUTH_FAIL:
       return { ...state, rejectSignIn: true };
     default:
