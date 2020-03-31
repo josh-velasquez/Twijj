@@ -13,7 +13,9 @@ class StreamChat extends React.Component {
   render() {
     return (
       <div class="four wide column">
-        <h5 class="four wide column">Stream Chat</h5>
+        <div class="ui secondary menu header center aligned grid">
+          <div class="ui item">Stream Chat</div>
+        </div>
         <ul id="messages">
           <li>
             <span>User 0</span>

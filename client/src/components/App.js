@@ -15,19 +15,17 @@ const App = () => {
     <div>
       <Router history={history}>
         <Header/>
-        <div style={{display: "flex"}}>
+        <div class="content">
           <SideNav/>
           <div className="ui content-main">
-              <div>
-                <Switch>
-                  <Route path="/" exact component={StreamList} />
-                  <Route path="/streams/new" exact component={StreamCreate} />
-                   <Route path="/streams/edit/:id" exact component={StreamEdit} />
-                  <Route path="/streams/delete/:id" exact component={StreamDelete} />
-                  <Route path="/streams/:id" exact component={StreamShow} />
-                  <Route path="/profile/:id" exact component={ProfileModal} />
-                </Switch>
-              </div>
+            <Switch>
+              <Route path="/" exact component={StreamList} />
+              <Route path="/streams/new" exact component={StreamCreate} />
+              <Route path="/streams/edit/:id" exact component={StreamEdit} />
+              <Route path="/streams/delete/:id" exact component={StreamDelete} />
+              <Route path="/streams/:id" exact component={StreamShow} />
+              <Route path="/profile/:id" exact component={ProfileModal} />
+            </Switch>
           </div>
         </div>
       </Router>

@@ -2,8 +2,25 @@
 	float: left;
 }
 
+html, body, #root, #root>div {
+  height: 100%;
+}
+
+#root>div {
+  display: flex;
+  flex-flow: column;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
 .content-main {
   width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .topnav {

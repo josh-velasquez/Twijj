@@ -45,13 +45,13 @@ class StreamShow extends React.Component {
     return (
       <div class="ui grid">
         <div id="stream-container" class="twelve wide column">
-          <div id="stream-container-info" class="ui grid">
-            <div class="twelve wide column middle">{username || 'Username'}'s Stream</div>
-            <div class="four wide column right aligned">
-              <button class="ui red button">Subscribe</button>
+          <div id="stream-container-info" class="ui secondary menu header">
+            <div class="item">{username || 'Username'}'s Stream</div>
+            <div class="item right" style={{padding: 0}}>
+              <button class="ui red button floated">Subscribe</button>
             </div>
           </div>
-          <div id="stream-container-content" class="ui grid">
+          <div id="stream-container-content">
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
             <h1>{title}</h1>
             <h5>{description}</h5>
