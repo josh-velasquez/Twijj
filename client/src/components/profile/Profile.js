@@ -6,7 +6,11 @@ import { fetchProfile } from "../../actions";
 class Profile extends React.Component {
   componentDidUpdate() {
     if (this.props.currentUserId != null && this.props.profile == null) {
-      this.props.fetchProfile({id: this.props.currentUserId, email: this.props.currentUserEmail , name: this.props.currentUserName});
+      this.props.fetchProfile({
+          id: this.props.currentUserId,
+          email: this.props.currentUserEmail,
+          name: this.props.currentUserName
+        });
     }
   }
 
