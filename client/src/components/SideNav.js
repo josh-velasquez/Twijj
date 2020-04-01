@@ -33,7 +33,7 @@ class SideNav extends React.Component {
 
   render() {
     return (
-      <div class="sidenav">
+      <div className="sidenav">
         <div className="subIcon">
           <span>
             <img src={OpenPNG} style={{width: "50px" , height: "50px"}}></img>

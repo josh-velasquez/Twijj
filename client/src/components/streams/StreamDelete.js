@@ -19,7 +19,6 @@ class StreamDelete extends React.Component {
           className="ui button negative"
         >
           Delete
-          
         </button>
         <Link to="/" className="ui button">
           Cancel
@@ -32,9 +31,7 @@ class StreamDelete extends React.Component {
     if (!this.props.stream) {
       return "Are you sure you want to delete this stream?";
     }
-    return `Are you sure you want to delete the stream with title: ${
-      this.props.stream.title
-    }`;
+    return `Are you sure you want to delete the stream with title: ${this.props.stream.title}`;
   }
 
   render() {
@@ -53,7 +50,6 @@ const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id] };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchStream, deleteStream }
-)(StreamDelete);
+export default connect(mapStateToProps, { fetchStream, deleteStream })(
+  StreamDelete
+);
