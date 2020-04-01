@@ -12,7 +12,8 @@ import {
   EDIT_STREAM,
   FETCH_PROFILE,
   CREATE_PROFILE,
-  EDIT_PROFILE
+  EDIT_PROFILE,
+  FETCH_STREAM_SERVER_IP
 } from "./types";
 import database from "../config/firebaseDb";
 
@@ -170,5 +171,18 @@ export const editProfile = (id, formValues) => async dispatch => {
     })
     .catch(function(error) {
       console.error("Failed to update profile: " + error);
+    });
+};
+
+export const fetchStreamServerIp = () => async dispatch => {
+  database
+    .collection("serverip")
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      dispatch({ type: FETCH_STREAM_SERVER_IP, payload: data[0] });
+    })
+    .catch(function(error) {
+      console.error("Failed to retrieve server ip: " + error);
     });
 };

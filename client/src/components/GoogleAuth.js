@@ -4,7 +4,7 @@ import { fetchProfile, awaitSignIn, signOut } from "../actions";
 
 class GoogleAuth extends React.Component {
   componentDidUpdate(){
-    if(this.props.rejectSignIn == true){
+    if(this.props.rejectSignIn === true){
       this.auth.signOut();
     }
   }
