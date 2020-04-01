@@ -13,14 +13,12 @@ html, body, #root, #root>div {
 
 .content {
   display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1 1 auto;
 }
 
 .content-main {
   width: 100%;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1 1 auto;
 }
 
 .topnav {
@@ -99,16 +97,15 @@ ul {
 #stream-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1 1 auto;
   padding: 0;
 }
 
 #chat-container {
-  padding-top: 0;
-  padding-bottom: 0;
   display: flex;
   flex-flow: column;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 #chat-messages {
@@ -129,10 +126,9 @@ ul {
 }
 
 .content-scrollable {
+  height: 0;
+  flex: 1 1 auto;
   margin: 0;
   padding: 0;
-  height: 0;
   overflow-y: auto;
-  flex-grow: 1;
-  flex-shrink: 1;
 }
