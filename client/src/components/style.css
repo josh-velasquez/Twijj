@@ -90,3 +90,24 @@ ul {
   background-color: #555;
   color: white;
 }
+
+.stream-show.ui.grid {
+  height: 100%;
+  margin: 0;
+}
+
+#stream-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.content-scrollable {
+  margin: 0;
+  padding: 0;
+  height: 0;
+  overflow-y: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
