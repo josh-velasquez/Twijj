@@ -43,11 +43,11 @@ class StreamShow extends React.Component {
     const { title, description } = this.props.stream;
     const username = this.props.stream.user_info && this.props.stream.user_info.username;
     return (
-      <div class="stream-show ui grid">
+      <div id="stream-show" class="ui grid">
         <div id="stream-container" class="twelve wide column">
-          <div id="stream-container-info" class="ui secondary menu header">
-            <div class="item">{username || 'Username'}'s Stream</div>
-            <div class="item right" style={{padding: 0}}>
+          <div class="ui secondary menu header">
+            <div class="item">{username || 'User'}'s Stream</div>
+            <div class="item right" style={{ "padding-top": 0, "padding-bottom": 0 }}>
               <button class="ui red button floated">Subscribe</button>
             </div>
           </div>

@@ -91,7 +91,7 @@ ul {
   color: white;
 }
 
-.stream-show.ui.grid {
+#stream-show {
   height: 100%;
   margin: 0;
 }
@@ -101,6 +101,31 @@ ul {
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
+  padding: 0;
+}
+
+#chat-container {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+#chat-messages {
+  width: 100%;
+}
+
+#chat-form {
+  width: 100%;
+  display: flex;
+}
+
+#chat-form > input {
+  flex: 1 1 auto;
+}
+
+#chat-form > button {
+  flex: 0 0 auto;
 }
 
 .content-scrollable {
