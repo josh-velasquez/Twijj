@@ -107,3 +107,7 @@ firebase deploy
 
 Website Link:
 https://twijj-271803.web.app/
+
+NOTE: Since the rtmp server is hosted through amazon aws ec2 instance, the ip is sent over http. In order for the stream to load properly, navigate to the site settings and enable insecure content.
+
+Ensure that the rtmp ip is correct and is running
