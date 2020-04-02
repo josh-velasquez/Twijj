@@ -105,7 +105,6 @@ ul {
   display: flex;
   flex-flow: column;
   padding-top: 0;
-  padding-bottom: 0;
 }
 
 #chat-messages {
@@ -128,7 +127,9 @@ ul {
 .content-scrollable {
   height: 0;
   flex: 1 1 auto;
-  margin: 0;
-  padding: 0;
   overflow-y: auto;
+}
+
+.content-scrollable > :last-child {
+  margin-bottom: 1rem;
 }
