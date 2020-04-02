@@ -1,11 +1,14 @@
+export const AWAIT_SIGN_IN = "AWAIT_SIGN_IN";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
+export const AUTH_FAIL = "AUTH_FAIL";
 export const CREATE_STREAM = "CREATE_STREAM";
 export const FETCH_STREAMS = "FETCH_STREAMS";
 export const FETCH_STREAM = "FETCH_STREAM";
 export const DELETE_STREAM = "DELETE_STREAM";
 export const EDIT_STREAM = "EDIT_STREAM";
 export const FETCH_PROFILE = "FETCH_PROFILE";
+export const CREATE_PROFILE = "CREATE_PROFILE"
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const FETCH_STREAM_URL = "FETCH_STREAM_URL";
 export const FETCH_STREAM_SERVER_IP = "FETCH_STREAM_SERVER_IP";
