@@ -1,23 +1,32 @@
 import streams from "../apis/streams";
 import history from "../history";
 import {
+  AWAIT_SIGN_IN,
   SIGN_IN,
   SIGN_OUT,
+  AUTH_FAIL,
   CREATE_STREAM,
   FETCH_STREAMS,
   FETCH_STREAM,
   DELETE_STREAM,
   EDIT_STREAM,
   FETCH_PROFILE,
+  CREATE_PROFILE,
   EDIT_PROFILE,
   FETCH_STREAM_SERVER_IP
 } from "./types";
 import database from "../config/firebaseDb";
 
-export const signIn = userId => {
+export const awaitSignIn = (userId, userFullName, userEmail) => {
+  return {
+    type: AWAIT_SIGN_IN,
+    payload: { userId, userFullName, userEmail }
+  };
+};
+
+export const signIn = () => {
   return {
     type: SIGN_IN,
-    payload: userId
   };
 };
 export const signOut = () => {
@@ -115,17 +124,47 @@ export const deleteStream = id => async dispatch => {
     });
 };
 
-export const fetchProfile = id => async dispatch => {
+const createProfile = createData => async dispatch => {
+  const payload = {
+    bio: "This is a default bio",
+    email: createData.email,
+    name: createData.name,
+    userid: createData.id,
+    username: createData.name
+  };
   database
     .collection("users")
-    .where("userid", "==", id)
+    .doc(createData.id)
+    .set(payload)
+    .then(() => {
+      dispatch({ type: CREATE_PROFILE, payload: payload });
+      dispatch({ type: SIGN_IN });
+      history.push("/");
+  })
+  .catch(function(error) {
+    console.error("Error cannot create profile: " + error);
+    dispatch({ type: AUTH_FAIL });
+  });
+};
+
+export const fetchProfile = fetchData => async dispatch => {
+  database
+    .collection("users")
+    .where("userid", "==", fetchData.id)
     .get()
     .then(querySnapshot => {
-      const data = querySnapshot.docs.map(doc => doc.data());
-      dispatch({ type: FETCH_PROFILE, payload: data[0] });
+      if(querySnapshot.empty){
+        dispatch(createProfile(fetchData));
+      }
+      else {
+        const data = querySnapshot.docs.map(doc => doc.data());
+        dispatch({ type: FETCH_PROFILE, payload: data[0] });
+        dispatch({ type: SIGN_IN });
+      }
     })
     .catch(function(error) {
       console.error("Error fetching a profile: " + error);
+      dispatch({ type: AUTH_FAIL });
     });
 };
 

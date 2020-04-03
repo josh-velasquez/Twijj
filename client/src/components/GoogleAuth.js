@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { signIn, signOut } from "../actions";
+import { fetchProfile, awaitSignIn, signOut } from "../actions";
 
 class GoogleAuth extends React.Component {
+  componentDidUpdate(){
+    if(this.props.rejectSignIn === true){
+      this.auth.signOut();
+    }
+  }
+  
   componentDidMount() {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
@@ -20,7 +26,16 @@ class GoogleAuth extends React.Component {
   }
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
-      this.props.signIn(this.auth.currentUser.get().getId());
+      this.props.fetchProfile({
+        id: this.auth.currentUser.get().getId(), 
+        name: this.auth.currentUser.get().getBasicProfile().getName(), 
+        email: this.auth.currentUser.get().getBasicProfile().getEmail()
+      });
+      this.props.awaitSignIn(
+        this.auth.currentUser.get().getId(), 
+        this.auth.currentUser.get().getBasicProfile().getName(), 
+        this.auth.currentUser.get().getBasicProfile().getEmail()
+      );
     } else {
       this.props.signOut();
     }
@@ -60,10 +75,13 @@ class GoogleAuth extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { isSignedIn: state.auth.isSignedIn };
+  return { 
+    isSignedIn: state.auth.isSignedIn, 
+    rejectSignIn: state.auth.rejectSignIn
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { signIn, signOut }
+  { fetchProfile, awaitSignIn, signOut }
 )(GoogleAuth);

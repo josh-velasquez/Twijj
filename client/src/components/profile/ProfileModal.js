@@ -10,11 +10,12 @@ import Placeholder from "./profile.jpeg";
 
 class Profile extends React.Component {
   componentDidMount() {
-    this.props.fetchProfile(this.props.match.params.id);
+    this.props.fetchProfile({id:this.props.match.params.id});
   }
 
   onSubmit = formValues => {
     this.props.editProfile(this.props.match.params.id, formValues);
+    this.props.fetchProfile({id:this.props.match.params.id});
   };
 
   renderActions() {

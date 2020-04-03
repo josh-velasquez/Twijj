@@ -8,14 +8,14 @@ import Logo from "./logonobg.png";
 
 const Header = () => {
   return (
-    <div class="ui menu inverted">
-      <div class="header item">
+    <div className="ui menu inverted">
+      <div className="header item">
         <Link to="/">
           <img src={Logo} style={{ width: "100px" }}></img>
         </Link>
       </div>
-      <a class="item active">Streams</a>
-      <a class="item">Browse</a>
+      <a className="item active">Streams</a>
+      <a className="item">Browse</a>
       <div className="right menu">
         <div className="item">
           <div className="ui icon input">
@@ -28,13 +28,13 @@ const Header = () => {
           <GoogleAuth />
         </div>
         <div className="item">
-          <div class="ui compact menu">
-            <div class="ui simple dropdown item">
-              <i class="settings icon small"></i>
-              <div class="menu">
-                <div class="item">Dark Mode</div>
-                <div class="item">Payment</div>
-                <div class="item">Messaging</div>
+          <div className="ui compact menu">
+            <div className="ui simple dropdown item">
+              <i className="settings icon small"></i>
+              <div className="menu">
+                <div className="item">Dark Mode</div>
+                <div className="item">Payment</div>
+                <div className="item">Messaging</div>
               </div>
             </div>
           </div>
