@@ -38,6 +38,12 @@ class StreamList extends React.Component {
       return (
         <div className="right floated content">
           <Link
+            to={`/streams/obssettings/${stream.userid}`}
+            className="ui button primary"
+          >
+            Stream Settings
+          </Link>
+          <Link
             to={`/streams/edit/${stream.userid}`}
             className="ui button primary"
           >
