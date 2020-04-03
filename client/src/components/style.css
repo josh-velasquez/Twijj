@@ -2,6 +2,25 @@
 	float: left;
 }
 
+html, body, #root, #root>div {
+  height: 100%;
+}
+
+#root>div {
+  display: flex;
+  flex-flow: column;
+}
+
+.content {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.content-main {
+  width: 100%;
+  flex: 1 1 auto;
+}
+
 .topnav {
 	overflow: hidden;
 	background-color: black;
@@ -68,4 +87,49 @@ ul {
 .subIcon:hover {
   background-color: #555;
   color: white;
+}
+
+#stream-show {
+  height: 100%;
+  margin: 0;
+}
+
+#stream-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 0;
+}
+
+#chat-container {
+  display: flex;
+  flex-flow: column;
+  padding-top: 0;
+}
+
+#chat-messages {
+  width: 100%;
+}
+
+#chat-form {
+  width: 100%;
+  display: flex;
+}
+
+#chat-form > input {
+  flex: 1 1 auto;
+}
+
+#chat-form > button {
+  flex: 0 0 auto;
+}
+
+.content-scrollable {
+  height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.content-scrollable > :last-child {
+  margin-bottom: 1rem;
 }

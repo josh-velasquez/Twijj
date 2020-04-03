@@ -11,7 +11,7 @@ class SideNav extends React.Component {
       subscriptions: [],
     }
   }
-    
+
   retrieveSubscribers(){
     /*replace this code with actual code to populate subcriptions state*/
     this.setState(state => ({
