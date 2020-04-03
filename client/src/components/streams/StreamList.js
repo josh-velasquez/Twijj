@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchStreams } from "../../actions";
+import { fetchStreams, fetchAdmins } from "../../actions";
 import { Link } from "react-router-dom";
 
 class StreamList extends React.Component {
   componentDidMount() {
     this.props.fetchStreams();
+    this.props.fetchAdmins();
   }
 
   renderList() {
@@ -57,6 +58,23 @@ class StreamList extends React.Component {
           </Link>
         </div>
       );
+    } else if (this.props.admins !== undefined) {
+      if (
+        this.props.admins.filter(
+          admin => admin.adminid === this.props.currentUserId
+        )
+      ) {
+        return (
+          <div className="right floated content">
+            <Link
+              to={`/streams/delete/${stream.userid}`}
+              className="ui button negative"
+            >
+              Delete
+            </Link>
+          </div>
+        );
+      }
     }
   }
 
@@ -87,7 +105,10 @@ const mapStateToProps = state => {
   return {
     streams: Object.values(state.streams),
     currentUserId: state.auth.userId,
-    isSignedIn: state.auth.isSignedIn
+    isSignedIn: state.auth.isSignedIn,
+    admins: state.profiles.admins
   };
 };
-export default connect(mapStateToProps, { fetchStreams })(StreamList);
+export default connect(mapStateToProps, { fetchStreams, fetchAdmins })(
+  StreamList
+);

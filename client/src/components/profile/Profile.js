@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchProfile } from "../../actions";
+import { fetchProfile ,fetchAdmins} from "../../actions";
 
 class Profile extends React.Component {
   componentDidUpdate() {
