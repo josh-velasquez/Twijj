@@ -17,7 +17,7 @@ class StreamList extends React.Component {
         </div>
       );
     } else {
-      return this.props.streams.map(stream => {
+      return this.props.streams.map((stream) => {
         return (
           <div className="item" key={stream.userid}>
             {this.renderAdmin(stream)}
@@ -61,8 +61,8 @@ class StreamList extends React.Component {
     } else if (this.props.admins !== undefined) {
       if (
         this.props.admins.filter(
-          admin => admin.adminid === this.props.currentUserId
-        )
+          (admin) => admin.adminid === this.props.currentUserId
+        ).length !== 0
       ) {
         return (
           <div className="right floated content">
@@ -101,12 +101,12 @@ class StreamList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     streams: Object.values(state.streams),
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn,
-    admins: state.profiles.admins
+    admins: state.profiles.admins,
   };
 };
 export default connect(mapStateToProps, { fetchStreams, fetchAdmins })(

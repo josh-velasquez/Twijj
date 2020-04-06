@@ -43,7 +43,7 @@ class SideNav extends React.Component {
       <div className="sidenav">
         <div className="subIcon">
           <span>
-            <i class="bars large icon"></i>
+            <i className="bars large icon"></i>
           </span>
         </div>
         {this.displaySubscribers()}
