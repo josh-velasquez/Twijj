@@ -7,10 +7,10 @@ class Profile extends React.Component {
   componentDidUpdate() {
     if (this.props.currentUserId != null && this.props.profile == null) {
       this.props.fetchProfile({
-          id: this.props.currentUserId,
-          email: this.props.currentUserEmail,
-          name: this.props.currentUserName
-        });
+        id: this.props.currentUserId,
+        email: this.props.currentUserEmail,
+        name: this.props.currentUserName,
+      });
     }
   }
 
@@ -30,13 +30,13 @@ class Profile extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     profile: state.profiles[state.auth.userId],
     currentUserId: state.auth.userId,
     currentUserEmail: state.auth.userEmail,
     currentUserName: state.auth.userFullName,
-    isSignedIn: state.auth.isSignedIn
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 

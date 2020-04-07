@@ -1,4 +1,9 @@
-import { FETCH_PROFILE, CREATE_PROFILE, EDIT_PROFILE } from "../actions/types";
+import {
+  FETCH_PROFILE,
+  CREATE_PROFILE,
+  EDIT_PROFILE,
+  FETCH_ADMINS
+} from "../actions/types";
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +13,8 @@ export default (state = {}, action) => {
       return { ...state, [action.payload.userid]: action.payload };
     case EDIT_PROFILE:
       return { ...state, [action.payload.userid]: action.payload };
+    case FETCH_ADMINS:
+      return { ...state, admins: action.payload };
     default:
       return state;
   }
