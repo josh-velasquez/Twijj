@@ -41,20 +41,20 @@ class StreamList extends React.Component {
         </div>
       );
     } else {
-      return this.props.streams.map((stream) => {
+      return (<div class="three column row"> {this.props.streams.map((stream) => {
         return (
-          <div className="item" key={stream.userid}>
+          <div className="column center aligned" key={stream.userid}>
             {this.renderAdmin(stream)}
             {this.renderThumbnail(stream)}
-            <div className="content">
+            <div className="center aligned">
               <Link to={`/streams/${stream.userid}`} className="header">
                 {stream.title}
               </Link>
-              <div className="description">{stream.description}</div>
             </div>
+            <div className="description" style={{width:"100%",overflow:"hidden",height:"4em"}}>{stream.description}</div>
           </div>
         );
-      });
+      })} </div>)
     }
   }
 
@@ -118,7 +118,8 @@ class StreamList extends React.Component {
     return (
       <div>
         <h2>Streams</h2>
-        <div className="ui celled list">{this.renderList()}</div>
+        <div class="carousel">Div for Carousel here</div>
+        <div className="ui relaxed grid">{this.renderList()}</div>
         {this.renderCreate()}
       </div>
     );
