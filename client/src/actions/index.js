@@ -18,8 +18,8 @@ import {
   CHAT_DISCONNECT,
   CHAT_SIGN_IN,
   CHAT_SIGN_OUT,
-  CHAT_MESSAGE_SEND,
-  CHAT_MESSAGE_RECEIVE,
+  CHAT_MESSAGE_SENDING,
+  CHAT_MESSAGE_SENT,
   FETCH_ADMINS
 } from "./types";
 import database from "../config/firebaseDb";
@@ -264,6 +264,13 @@ export const chatSignOut = () => async dispatch => {
 
 export const chatMessageSend = (message) => async (dispatch, getState) => {
   if (!socket) return;
+
+  dispatch({ type: CHAT_MESSAGE_SENDING });
+  socket.emit("new message", message);
+
+  socket.on("message received", () => {
+    dispatch({ type: CHAT_MESSAGE_SENT });
+  })
 };
 
 export const chatDisconnect = () => async dispatch => {

@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { chatConnect, chatDisconnect, chatSignIn, chatSignOut } from "../../actions";
+import {
+  chatConnect,
+  chatDisconnect,
+  chatMessageSend,
+  chatSignIn,
+  chatSignOut,
+} from "../../actions";
 
 /**
  * The chat component that will be shown alongside streams.
@@ -10,6 +16,13 @@ import { chatConnect, chatDisconnect, chatSignIn, chatSignOut } from "../../acti
 class StreamChat extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
+
+    const message = event.target.querySelector("input").value;
+
+    if (message) {
+      this.props.chatMessageSend(message);
+      event.target.querySelector("input").value = "";
+    }
   }
 
   componentDidMount() {
@@ -27,17 +40,19 @@ class StreamChat extends React.Component {
 
   componentDidUpdate() {
     if (
-      this.props.isSignedIn
-      && this.props.chatConnected
-      && !this.props.chatSignedIn
-      && this.props.profile
+      this.props.isSignedIn &&
+      this.props.chatConnected &&
+      !this.props.chatSignedIn &&
+      this.props.profile
     ) {
-      this.props.chatSignIn(this.props.profile.userid, this.props.profile.username);
-    }
-    else if (
-      !this.props.isSignedIn
-      && this.props.chatConnected
-      && this.props.chatSignedIn
+      this.props.chatSignIn(
+        this.props.profile.userid,
+        this.props.profile.username
+      );
+    } else if (
+      !this.props.isSignedIn &&
+      this.props.chatConnected &&
+      this.props.chatSignedIn
     ) {
       this.props.chatSignOut();
     }
@@ -47,25 +62,38 @@ class StreamChat extends React.Component {
     this.props.chatDisconnect();
   }
 
+  placeholder() {
+    const username =
+      this.props.stream &&
+      this.props.stream.user_info &&
+      this.props.stream.user_info.username;
+    let placeholder = "Sign in to chat with " + (username || "User");
+
+    if (this.props.chatSignedIn) {
+      placeholder = "Chat with " + (username || "User");
+    }
+
+    return placeholder;
+  }
+
+  disabled() {
+    return !this.props.chatSignedIn && !this.props.chatSending;
+  }
+
   render() {
     return (
       <div id="chat-container" class="four wide column">
         <div class="ui secondary menu header center aligned grid">
           <div class="ui item">Stream Chat</div>
         </div>
-        <ul id="chat-messages" class="content-scrollable">
-          <li>
-            <span>User 0</span>
-            <span>hello</span>
-          </li>
-          <li>
-            <span>User 1</span>
-            <span>bruh</span>
-          </li>
-        </ul>
-        <form id="chat-form" action="" onSubmit={this.handleSubmit}>
-          <input autoComplete="off"/>
-          <button>Chat</button>
+        <ul id="chat-messages" class="content-scrollable" />
+        <form id="chat-form" action="" onSubmit={(e) => this.handleSubmit(e)}>
+          <input
+            autoComplete="off"
+            placeholder={this.placeholder()}
+            disabled={this.disabled()}
+          />
+          <button disabled={this.disabled()}>Chat</button>
         </form>
       </div>
     );
@@ -76,17 +104,16 @@ const mapStateToProps = (state) => {
   return {
     profile: state.profiles[state.auth.userId],
     isSignedIn: state.auth.isSignedIn,
-    chatConnected: state.chat.chatConnected,
-    chatSignedIn: state.chat.chatSignedIn
-  }
-}
+    chatConnected: state.chat.connected,
+    chatSignedIn: state.chat.signedIn,
+    chatSending: state.chat.sending,
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  {
-    chatConnect,
-    chatDisconnect,
-    chatSignIn,
-    chatSignOut
-  }
-)(StreamChat);
+export default connect(mapStateToProps, {
+  chatConnect,
+  chatDisconnect,
+  chatMessageSend,
+  chatSignIn,
+  chatSignOut,
+})(StreamChat);
