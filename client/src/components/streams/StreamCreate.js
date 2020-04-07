@@ -25,7 +25,7 @@ class StreamCreate extends React.Component {
     );
   };
 
-  onSubmit = formValues => {
+  onSubmit = (formValues) => {
     this.props.createStream(formValues);
   };
 
@@ -41,13 +41,18 @@ class StreamCreate extends React.Component {
           component={this.renderInput}
           label="Enter Description"
         />
+        <Field
+          name="gametag"
+          component={this.renderInput}
+          label="Enter Game Tag"
+        />
         <button className="ui button primary">Submit</button>
       </form>
     );
   }
 }
 
-const validate = formValues => {
+const validate = (formValues) => {
   const errors = {};
   if (!formValues.title) {
     errors.title = "You must enter a title";
@@ -55,12 +60,15 @@ const validate = formValues => {
   if (!formValues.description) {
     errors.description = "You must enter a description";
   }
+  if (!formValues.gametag) {
+    errors.gametag = "You must enter a game tag";
+  }
   return errors;
 };
 
 const formWrapped = reduxForm({
   form: "streamCreate",
-  validate
+  validate,
 })(StreamCreate);
 
 export default connect(null, { createStream })(formWrapped);
