@@ -16,7 +16,7 @@ const App = () => {
     <div>
       <Router history={history}>
         <Header />
-        <div class="content">
+        <div className="content">
           <SideNav />
           <div className="ui content-main">
             <Switch>

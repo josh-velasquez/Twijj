@@ -19,7 +19,8 @@ import {
   CHAT_SIGN_IN,
   CHAT_SIGN_OUT,
   CHAT_MESSAGE_SEND,
-  CHAT_MESSAGE_RECEIVE
+  CHAT_MESSAGE_RECEIVE,
+  FETCH_ADMINS
 } from "./types";
 import database from "../config/firebaseDb";
 import io from "socket.io-client";
@@ -33,7 +34,7 @@ export const awaitSignIn = (userId, userFullName, userEmail) => {
 
 export const signIn = () => {
   return {
-    type: SIGN_IN,
+    type: SIGN_IN
   };
 };
 export const signOut = () => {
@@ -82,7 +83,7 @@ export const fetchStream = id => async dispatch => {
     .get()
     .then(querySnapshot => {
       const data_stream = querySnapshot.docs.map(doc => doc.data())[0];
-      database  // Get the information of the user that created the stream
+      database // Get the information of the user that created the stream
         .collection("users")
         .where("userid", "==", id)
         .get()
@@ -147,11 +148,11 @@ const createProfile = createData => async dispatch => {
       dispatch({ type: CREATE_PROFILE, payload: payload });
       dispatch({ type: SIGN_IN });
       history.push("/");
-  })
-  .catch(function(error) {
-    console.error("Error cannot create profile: " + error);
-    dispatch({ type: AUTH_FAIL });
-  });
+    })
+    .catch(function(error) {
+      console.error("Error cannot create profile: " + error);
+      dispatch({ type: AUTH_FAIL });
+    });
 };
 
 export const fetchProfile = fetchData => async dispatch => {
@@ -160,10 +161,9 @@ export const fetchProfile = fetchData => async dispatch => {
     .where("userid", "==", fetchData.id)
     .get()
     .then(querySnapshot => {
-      if(querySnapshot.empty){
+      if (querySnapshot.empty) {
         dispatch(createProfile(fetchData));
-      }
-      else {
+      } else {
         const data = querySnapshot.docs.map(doc => doc.data());
         dispatch({ type: FETCH_PROFILE, payload: data[0] });
         dispatch({ type: SIGN_IN });
@@ -273,4 +273,17 @@ export const chatDisconnect = () => async dispatch => {
   socket = null;
   dispatch({ type: CHAT_SIGN_OUT });
   dispatch({ type: CHAT_DISCONNECT });
+};
+
+export const fetchAdmins = () => async dispatch => {
+  database
+    .collection("admins")
+    .get()
+    .then(querySnapshot => {
+      const data = querySnapshot.docs.map(doc => doc.data());
+      dispatch({ type: FETCH_ADMINS, payload: data });
+    })
+    .catch(function(error) {
+      console.error("Failed to retrieve admins: " + error);
+    });
 };

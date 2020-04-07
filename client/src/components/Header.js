@@ -14,7 +14,7 @@ const Header = () => {
           <img src={Logo} style={{ width: "100px" }}></img>
         </Link>
       </div>
-      <a className="item active">Streams</a>
+      <a className="item">Streams</a>
       <a className="item">Browse</a>
       <div className="right menu">
         <div className="item">
@@ -28,9 +28,12 @@ const Header = () => {
           <GoogleAuth />
         </div>
         <div className="item">
-          <div className="ui compact menu">
+          <div
+            className="ui compact menu"
+            style={{ backgroundColor: "#1b1c1d" }}
+          >
             <div className="ui simple dropdown item">
-              <i className="settings icon small"></i>
+              <i className="settings icon"></i>
               <div className="menu">
                 <div className="item">Dark Mode</div>
                 <div className="item">Payment</div>
