@@ -59,8 +59,8 @@ class StreamShow extends React.Component {
           </div>
           <div className="content-scrollable">
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
-            <h4>#{gametag}</h4>
             <h1>{title}</h1>
+            <h4>#{gametag}</h4>
             <h5>{description}</h5>
           </div>
         </div>
