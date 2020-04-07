@@ -13,9 +13,16 @@ import {
   FETCH_PROFILE,
   CREATE_PROFILE,
   EDIT_PROFILE,
-  FETCH_STREAM_SERVER_IP
+  FETCH_STREAM_SERVER_IP,
+  CHAT_CONNECT,
+  CHAT_DISCONNECT,
+  CHAT_SIGN_IN,
+  CHAT_SIGN_OUT,
+  CHAT_MESSAGE_SEND,
+  CHAT_MESSAGE_RECEIVE
 } from "./types";
 import database from "../config/firebaseDb";
+import io from "socket.io-client";
 
 export const awaitSignIn = (userId, userFullName, userEmail) => {
   return {
@@ -188,6 +195,7 @@ export const editProfile = (id, formValues) => async dispatch => {
 export const fetchStreamServerIp = () => async dispatch => {
   database
     .collection("serverip")
+    // .where("server_type", "==", "rtmp_server")
     .get()
     .then(querySnapshot => {
       const data = querySnapshot.docs.map(doc => doc.data());
@@ -196,4 +204,73 @@ export const fetchStreamServerIp = () => async dispatch => {
     .catch(function(error) {
       console.error("Failed to retrieve server ip: " + error);
     });
+};
+
+let socket;
+
+export const chatConnect = (streamid) => async dispatch => {
+  // database
+  //   .collection("serverip")
+  //   .where("server_type", "==", "chat_server")
+  //   .get()
+  //   .then(querySnapshot => {
+  //     // do the stuff
+  //   })
+  //   .catch(function(error) {
+  //     console.error("Failed to retrieve chat server ip: " + error);
+  //   });
+
+  socket = io(`http://localhost:8001`, {
+    query: {
+      streamid: streamid
+    }
+  });
+
+  socket.on("connect", () => {
+    dispatch({ type: CHAT_CONNECT });
+  });
+
+  socket.on("disconnect", () => {
+    dispatch(chatDisconnect());
+  });
+
+  socket.on("new message", (message) => {
+    console.log("New message", message.text);
+  });
+
+  socket.on("viewer count", (count) => {
+    // TODO: Throw this into the state and display it.
+    console.log("Viewer count", count);
+  });
+};
+
+export const chatSignIn = (userid, username) => async dispatch => {
+  if (!socket) return;
+
+  socket.emit("signed in", { userid, username });
+
+  socket.on("signed in", () => {
+    dispatch({ type: CHAT_SIGN_IN });
+  });
+};
+
+export const chatSignOut = () => async dispatch => {
+  if (!socket) return;
+
+  socket.emit("signed out");
+
+  dispatch({ type: CHAT_SIGN_OUT });
+};
+
+export const chatMessageSend = (message) => async (dispatch, getState) => {
+  if (!socket) return;
+};
+
+export const chatDisconnect = () => async dispatch => {
+  if (!socket) return;
+
+  socket.disconnect();
+  socket = null;
+  dispatch({ type: CHAT_SIGN_OUT });
+  dispatch({ type: CHAT_DISCONNECT });
 };
