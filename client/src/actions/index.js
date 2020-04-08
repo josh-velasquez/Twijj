@@ -20,6 +20,7 @@ import {
   CHAT_SIGN_OUT,
   CHAT_MESSAGE_SENDING,
   CHAT_MESSAGE_SENT,
+  CHAT_MESSAGE_ADD,
   FETCH_ADMINS
 } from "./types";
 import database from "../config/firebaseDb";
@@ -237,7 +238,7 @@ export const chatConnect = (streamid) => async (dispatch) => {
   });
 
   socket.on("new message", (message) => {
-    console.log("New message", message.text);
+    dispatch({ type: CHAT_MESSAGE_ADD, message});
   });
 
   socket.on("viewer count", (count) => {

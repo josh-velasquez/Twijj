@@ -10,31 +10,9 @@ import {
 
 /**
  * The chat component that will be shown alongside streams.
- *
- * For now, simply returns a template with no functionality.
  */
 class StreamChat extends React.Component {
-  handleSubmit(event) {
-    event.preventDefault();
-
-    const message = event.target.querySelector("input").value;
-
-    if (message) {
-      this.props.chatMessageSend(message);
-      event.target.querySelector("input").value = "";
-    }
-  }
-
   componentDidMount() {
-    // if (this.props.stream && this.props.isSignedIn && this.props.profile) {
-    //   const socket = io(`http://localhost:8001`, {
-    //     query: {
-    //       streamid: this.props.stream.userid,
-    //       userid: this.props.profile.userid,
-    //       username: this.props.profile.username
-    //     }
-    //   });
-    // }
     this.props.chatConnect(this.props.stream && this.props.stream.userid);
   }
 
@@ -62,6 +40,25 @@ class StreamChat extends React.Component {
     this.props.chatDisconnect();
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const message = this.message_form_textarea.value;
+
+    if (message) {
+      this.props.chatMessageSend(message);
+      this.message_form_textarea.value = "";
+    }
+  }
+
+  submitOnEnter(event) {
+    // If the enter key is pressed without the shift key.
+    if (event.keyCode === 13 && !event.shiftKey) {
+      event.preventDefault();
+      this.message_form.requestSubmit();
+    }
+  }
+
   placeholder() {
     const username =
       this.props.stream &&
@@ -80,18 +77,50 @@ class StreamChat extends React.Component {
     return !this.props.chatSignedIn && !this.props.chatSending;
   }
 
+  renderMessages() {
+    const username =
+      this.props.stream &&
+      this.props.stream.user_info &&
+      this.props.stream.user_info.username;
+    if (!this.props.messages || this.props.messages.length === 0) {
+      return (
+        <div className="message empty">
+          <span>Send a message to chat with {username || "User"}!</span>
+        </div>
+      )
+    }
+
+    return this.props.messages.map((message) => {
+      return (
+        <div className="message">
+          <span className="message-username">{message.username}</span>
+          <span className="message-text">{message.text}</span>
+        </div>
+      );
+    });
+  }
+
   render() {
+    console.log(this.props.messages);
     return (
       <div id="chat-container" className="four wide column">
         <div className="ui secondary menu header center aligned grid">
           <div className="ui item">Stream Chat</div>
         </div>
-        <ul id="chat-messages" className="content-scrollable" />
-        <form id="chat-form" action="" onSubmit={(e) => this.handleSubmit(e)}>
-          <input
-            autoComplete="off"
+        <div id="chat-messages" className="content-scrollable">
+          {this.renderMessages()}
+        </div>
+        <form
+          id="chat-form"
+          ref={element => this.message_form = element}
+          action=""
+          onSubmit={(e) => this.handleSubmit(e)}
+        >
+          <textarea
+            ref={element => this.message_form_textarea = element}
             placeholder={this.placeholder()}
             disabled={this.disabled()}
+            onKeyDown={(e) => this.submitOnEnter(e)}
           />
           <button disabled={this.disabled()}>Chat</button>
         </form>
@@ -107,6 +136,7 @@ const mapStateToProps = (state) => {
     chatConnected: state.chat.connected,
     chatSignedIn: state.chat.signedIn,
     chatSending: state.chat.sending,
+    messages: state.chat.messages
   };
 };
 
