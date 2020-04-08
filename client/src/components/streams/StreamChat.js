@@ -34,6 +34,11 @@ class StreamChat extends React.Component {
     ) {
       this.props.chatSignOut();
     }
+
+    if (this.at_bottom) {
+      this.message_container_end.scrollIntoView();
+      this.at_bottom = false;
+    }
   }
 
   componentWillUnmount() {
@@ -87,12 +92,12 @@ class StreamChat extends React.Component {
         <div className="message empty">
           <span>Send a message to chat with {username || "User"}!</span>
         </div>
-      )
+      );
     }
 
     return this.props.messages.map((message) => {
       return (
-        <div className="message">
+        <div className="message" key={message.messageid}>
           <span className="message-username">{`${message.username}: `}</span>
           <span className="message-text">{message.text}</span>
         </div>
@@ -101,23 +106,36 @@ class StreamChat extends React.Component {
   }
 
   render() {
-    console.log(this.props.messages);
+    if (this.message_container) {
+      if (
+        this.message_container.scrollHeight -
+          this.message_container.scrollTop ===
+        this.message_container.clientHeight
+      ) {
+        this.at_bottom = true;
+      }
+    }
     return (
       <div id="chat-container" className="four wide column">
         <div className="ui secondary menu header center aligned grid">
           <div className="ui item">Stream Chat</div>
         </div>
-        <div id="chat-messages" className="content-scrollable">
+        <div
+          id="chat-messages"
+          ref={(element) => (this.message_container = element)}
+          className="content-scrollable"
+        >
           {this.renderMessages()}
+          <div ref={(element) => (this.message_container_end = element)}></div>
         </div>
         <form
           id="chat-form"
-          ref={element => this.message_form = element}
+          ref={(element) => (this.message_form = element)}
           action=""
           onSubmit={(e) => this.handleSubmit(e)}
         >
           <textarea
-            ref={element => this.message_form_textarea = element}
+            ref={(element) => (this.message_form_textarea = element)}
             placeholder={this.placeholder()}
             disabled={this.disabled()}
             onKeyDown={(e) => this.submitOnEnter(e)}
@@ -136,7 +154,7 @@ const mapStateToProps = (state) => {
     chatConnected: state.chat.connected,
     chatSignedIn: state.chat.signedIn,
     chatSending: state.chat.sending,
-    messages: state.chat.messages
+    messages: state.chat.messages,
   };
 };
 

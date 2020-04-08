@@ -116,7 +116,7 @@ ul {
 
 #chat-messages {
   width: 100%;
-  background-color: var(--main);
+  background-color: var(--main-lighter);
   color: #fff;
 }
 
@@ -128,7 +128,7 @@ ul {
 }
 
 #chat-messages .message:hover {
-  background-color: var(--main-lighter);
+  background-color: var(--main);
 }
 
 #chat-messages .message-username {
