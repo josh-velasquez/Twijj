@@ -82,11 +82,11 @@ class StreamChat extends React.Component {
 
   render() {
     return (
-      <div id="chat-container" class="four wide column">
-        <div class="ui secondary menu header center aligned grid">
-          <div class="ui item">Stream Chat</div>
+      <div id="chat-container" className="four wide column">
+        <div className="ui secondary menu header center aligned grid">
+          <div className="ui item">Stream Chat</div>
         </div>
-        <ul id="chat-messages" class="content-scrollable" />
+        <ul id="chat-messages" className="content-scrollable" />
         <form id="chat-form" action="" onSubmit={(e) => this.handleSubmit(e)}>
           <input
             autoComplete="off"

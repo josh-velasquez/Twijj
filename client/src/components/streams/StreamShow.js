@@ -32,7 +32,7 @@ class StreamShow extends React.Component {
     const { id } = this.props.match.params;
     this.player = flv.createPlayer({
       type: "flv",
-      url: `http://${this.props.server.ip}:8000/live/${id}.flv`
+      url: `http://${this.props.server.ip}:8000/live/${id}.flv`,
     });
     this.player.attachMediaElement(this.videoRef.current);
     this.player.load();
@@ -42,20 +42,25 @@ class StreamShow extends React.Component {
     if (!this.props.stream) {
       return <div>Loading...</div>;
     }
-    const { title, description } = this.props.stream;
-    const username = this.props.stream.user_info && this.props.stream.user_info.username;
+    const { title, description, gametag } = this.props.stream;
+    const username =
+      this.props.stream.user_info && this.props.stream.user_info.username;
     return (
-      <div id="stream-show" class="ui grid">
-        <div id="stream-container" class="twelve wide column">
-          <div class="ui secondary menu header">
-            <div class="item">{username || 'User'}'s Stream</div>
-            <div class="item right" style={{ "padding-top": 0, "padding-bottom": 0 }}>
-              <button class="ui red button floated">Subscribe</button>
+      <div id="stream-show" className="ui grid">
+        <div id="stream-container" className="twelve wide column">
+          <div className="ui secondary menu header">
+            <div className="item">{username || "User"}'s Stream</div>
+            <div
+              className="item right"
+              style={{ paddingTop: 0, paddingBottom: 0 }}
+            >
+              <button className="ui red button floated">Subscribe</button>
             </div>
           </div>
-          <div class="content-scrollable">
+          <div className="content-scrollable">
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
             <h1>{title}</h1>
+            <h4>#{gametag}</h4>
             <h5>{description}</h5>
           </div>
         </div>
@@ -68,7 +73,7 @@ class StreamShow extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     stream: state.streams[ownProps.match.params.id],
-    server: state.streamServer.serverIp
+    server: state.streamServer.serverIp,
   };
 };
 
