@@ -93,7 +93,7 @@ class StreamChat extends React.Component {
     return this.props.messages.map((message) => {
       return (
         <div className="message">
-          <span className="message-username">{message.username}</span>
+          <span className="message-username">{`${message.username}: `}</span>
           <span className="message-text">{message.text}</span>
         </div>
       );

@@ -116,6 +116,23 @@ ul {
 
 #chat-messages {
   width: 100%;
+  background-color: var(--main);
+  color: #fff;
+}
+
+#chat-messages .message {
+  padding: 0.4em 0.8em;
+  word-break: break-all;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#chat-messages .message:hover {
+  background-color: var(--main-lighter);
+}
+
+#chat-messages .message-username {
+  font-weight: bold;
 }
 
 #chat-form {
