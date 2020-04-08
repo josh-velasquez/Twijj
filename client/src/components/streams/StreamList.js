@@ -46,7 +46,7 @@ class StreamList extends React.Component {
           <div className="column center aligned" key={stream.userid}>
             {this.renderAdmin(stream)}
             {this.renderThumbnail(stream)}
-            <div className="center aligned">
+            <div className="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
               <Link to={`/streams/${stream.userid}`} className="header">
                 {stream.title}
               </Link>
