@@ -38,6 +38,7 @@ class StreamForm extends React.Component {
           component={this.renderInput}
           label="Enter Description"
         />
+        <Field name="gametag" component={this.renderInput} label="Enter Game Tag" />
         <button className="ui button primary">Submit</button>
       </form>
     );

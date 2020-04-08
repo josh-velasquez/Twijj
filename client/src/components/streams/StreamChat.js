@@ -12,11 +12,11 @@ class StreamChat extends React.Component {
 
   render() {
     return (
-      <div id="chat-container" class="four wide column">
-        <div class="ui secondary menu header center aligned grid">
-          <div class="ui item">Stream Chat</div>
+      <div id="chat-container" className="four wide column">
+        <div className="ui secondary menu header center aligned grid">
+          <div className="ui item">Stream Chat</div>
         </div>
-        <ul id="chat-messages" class="content-scrollable">
+        <ul id="chat-messages" className="content-scrollable">
           <li>
             <span>User 0</span>
             <span>hello</span>
@@ -27,7 +27,7 @@ class StreamChat extends React.Component {
           </li>
         </ul>
         <form id="chat-form" action="" onSubmit={this.handleSubmit}>
-          <input autoComplete="off"/>
+          <input autoComplete="off" />
           <button>Chat</button>
         </form>
       </div>

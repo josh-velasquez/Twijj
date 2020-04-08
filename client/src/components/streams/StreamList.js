@@ -2,11 +2,35 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchStreams, fetchAdmins } from "../../actions";
 import { Link } from "react-router-dom";
+import thumbnails from "../../assets/thumbnails.json";
 
 class StreamList extends React.Component {
   componentDidMount() {
     this.props.fetchStreams();
     this.props.fetchAdmins();
+  }
+
+  renderThumbnail(stream) {
+    var src = null;
+    if (stream.gametag !== undefined) {
+      for (var key in thumbnails) {
+        if (key === stream.gametag.toLowerCase()) {
+          src = thumbnails[key];
+        }
+      }
+    }
+    if (src !== null) {
+      return (
+        <img
+          src={src}
+          alt="large middle aligned icon camera"
+          width="30px"
+          height="30px"
+        ></img>
+      );
+    } else {
+      return <i className="large middle aligned icon camera" />;
+    }
   }
 
   renderList() {
@@ -21,7 +45,7 @@ class StreamList extends React.Component {
         return (
           <div className="item" key={stream.userid}>
             {this.renderAdmin(stream)}
-            <i className="large middle aligned icon camera" />
+            {this.renderThumbnail(stream)}
             <div className="content">
               <Link to={`/streams/${stream.userid}`} className="header">
                 {stream.title}
