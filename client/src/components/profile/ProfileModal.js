@@ -10,12 +10,12 @@ import Placeholder from "./profile.jpeg";
 
 class Profile extends React.Component {
   componentDidMount() {
-    this.props.fetchProfile({id:this.props.match.params.id});
+    this.props.fetchProfile({ id: this.props.match.params.id });
   }
 
-  onSubmit = formValues => {
+  onSubmit = (formValues) => {
     this.props.editProfile(this.props.match.params.id, formValues);
-    this.props.fetchProfile({id:this.props.match.params.id});
+    this.props.fetchProfile({ id: this.props.match.params.id });
   };
 
   renderActions() {
@@ -69,7 +69,11 @@ class Profile extends React.Component {
   renderContent() {
     return (
       <form className="ui form error">
-        <img src={Placeholder} className="ui image centered circular" height="150" />
+        <img
+          src={Placeholder}
+          className="ui image centered circular"
+          height="150"
+        />
         <Field name="username" component={this.renderInput} label="Username" />
         <Field name="bio" component={this.renderTextArea} label="Bio" />
       </form>
@@ -88,7 +92,7 @@ class Profile extends React.Component {
   }
 }
 
-const validate = formValues => {
+const validate = (formValues) => {
   const errors = {};
   if (!formValues.username) {
     errors.username = "You must enter a Username";
@@ -103,13 +107,13 @@ const mapStateToProps = (state, ownProps) => {
       "username",
       "bio"
     ),
-    enableReinitialize: true
+    enableReinitialize: true,
   };
 };
 
 const formWrapped = reduxForm({
   form: "editProfile",
-  validate
+  validate,
 })(Profile);
 
 export default connect(mapStateToProps, { fetchProfile, editProfile })(
