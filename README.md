@@ -45,6 +45,7 @@ Navigate to the client folder<br>
 `npm install`<br>
 To run the application<br>
 `npm start`<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 #### Cloning Twijj Chat Server
 
@@ -61,7 +62,6 @@ Navigate to rtmpserver folder<br>
 `npm install`<br>
 To run the application<br>
 `npm start`<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <br>
 <br>
@@ -97,4 +97,4 @@ Paste the IP for each servers accordingly (i.e. Twijj Chat IP -> chatip and Twij
 Open OBS and navigate to settings -> stream
 Navigate to the webapp home page, once your stream is created, click on select settings and copy the Stream URL and Stream Key
 Select the Service to Custom and paste the stream URL to the Server and the Stream Key to the Stream Key
-Select OK to save changes.
+Click Apply and then OK to save changes.
