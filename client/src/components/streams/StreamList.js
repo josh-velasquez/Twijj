@@ -56,7 +56,7 @@ class StreamList extends React.Component {
     } else {
       return (<div class="three column row"> {this.props.streams.map((stream, index) => {
         return (
-          <div className="column center aligned" style={{backgroundColor:alternatingColor[index % alternatingColor.length]}} key={stream.userid}>
+          <div className="column center aligned" style={{backgroundColor:alternatingColor[index % alternatingColor.length], padding:"1%"}} key={stream.userid}>
             {this.renderThumbnail(stream)}
             <div class="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
               <Link to={`/streams/${stream.userid}`} className="header">
