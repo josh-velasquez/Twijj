@@ -199,7 +199,6 @@ export const editProfile = (id, formValues) => async (dispatch) => {
 export const fetchStreamServerIp = () => async (dispatch) => {
   database
     .collection("serverip")
-    // .where("server_type", "==", "rtmp_server")
     .get()
     .then((querySnapshot) => {
       const data = querySnapshot.docs.map((doc) => doc.data());
@@ -213,39 +212,37 @@ export const fetchStreamServerIp = () => async (dispatch) => {
 let socket;
 
 export const chatConnect = (streamid) => async (dispatch) => {
-  // database
-  //   .collection("serverip")
-  //   .where("server_type", "==", "chat_server")
-  //   .get()
-  //   .then(querySnapshot => {
-  //     // do the stuff
-  //   })
-  //   .catch(function(error) {
-  //     console.error("Failed to retrieve chat server ip: " + error);
-  //   });
+  database
+    .collection("chatserverip")
+    .get()
+    .then((querySnapshot) => {
+      const chatServerIp = querySnapshot.docs.map((doc) => doc.data())[0].ip;
+      socket = io(`http://${chatServerIp}:8001`, {
+        query: {
+          streamid: streamid
+        }
+      });
 
-  socket = io(`http://localhost:8001`, {
-    query: {
-      streamid: streamid
-    }
-  });
+      socket.on("connect", () => {
+        dispatch({ type: CHAT_CONNECT });
+      });
 
-  socket.on("connect", () => {
-    dispatch({ type: CHAT_CONNECT });
-  });
+      socket.on("disconnect", () => {
+        dispatch(chatDisconnect());
+      });
 
-  socket.on("disconnect", () => {
-    dispatch(chatDisconnect());
-  });
+      socket.on("new message", (message) => {
+        dispatch({ type: CHAT_MESSAGE_ADD, message});
+      });
 
-  socket.on("new message", (message) => {
-    dispatch({ type: CHAT_MESSAGE_ADD, message});
-  });
-
-  socket.on("viewer count", (count) => {
-    // TODO: Throw this into the state and display it.
-    console.log("Viewer count", count);
-  });
+      socket.on("viewer count", (count) => {
+        // TODO: Throw this into the state and display it.
+        console.log("Viewer count", count);
+      });
+    })
+    .catch(function(error) {
+      console.error("Failed to retrieve chat server ip: " + error);
+    });
 };
 
 export const chatSignIn = (userid, username) => async (dispatch) => {
