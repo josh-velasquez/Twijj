@@ -140,7 +140,7 @@ class StreamChat extends React.Component {
             disabled={this.disabled()}
             onKeyDown={(e) => this.submitOnEnter(e)}
           />
-          <button disabled={this.disabled()}>Chat</button>
+          <button className="ui red button" disabled={this.disabled()}>Chat</button>
         </form>
       </div>
     );
