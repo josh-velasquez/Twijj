@@ -213,10 +213,10 @@ let socket;
 
 export const chatConnect = (streamid) => async (dispatch) => {
   database
-    .collection("chatserverip")
+    .collection("serverip")
     .get()
     .then((querySnapshot) => {
-      const chatServerIp = querySnapshot.docs.map((doc) => doc.data())[0].ip;
+      const chatServerIp = querySnapshot.docs.map((doc) => doc.data())[0].chatip;
       socket = io(`http://${chatServerIp}:8001`, {
         query: {
           streamid: streamid
