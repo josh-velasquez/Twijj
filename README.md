@@ -1,113 +1,103 @@
-# Blitz
+# Twijj
 
 Streaming service
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Twijj is a web application platform that allows users to easily live stream and share content with any number of other viewers online.
+Alongside streaming or viewing streams, users can also interact with each other through a live chat in each stream, and communicate with the stream host.
 
-## Available Scripts
+## Authors:
 
-In the project directory, you can run:
+Emilio Alvarez Veronesi, Jeffery Huo, Jeffery Swarts, Joshua Velasquez, Yue Zhang
 
-### `npm start`
+## Website Link:
 
-Runs the app in the development mode.<br>
+[https://twijj-271803.web.app/](https://twijj-271803.web.app/)
+
+## Associated Github Repositories
+
+Client Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/Twijj)
+Chat Server Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/TwijjChatServer)
+Stream Server Side -> [https://github.com/josh-velasquez/TwijjStreamServer](https://github.com/josh-velasquez/TwijjStreamServer)
+
+## Tools and Applications Used
+
+Database -> Firebase
+Server -> AWS (Chat and Stream)
+Hosting -> Google platform/Firebase
+
+## Web Browser Setup
+
+### Allowing Insecure Content
+
+Once the webapp is launched, navigate to your browser settings and then to site settings and allow for insecure content.
+Since the stream from the AWS servers is sent over http without encryption, this is needed for the stream request to the AWS server to work.
+
+### Enabling Third-Party Cookies
+
+While in site settings, allow for third-party settings since this is needed by the Google Sign In.
+
+## Deployment Instructions
+
+### Cloning Github Repositories
+
+#### Cloning Twijj
+
+`git clone https://github.com/josh-velasquez/Twijj`
+Navigate to the client folder
+`npm install`
+To run the application
+`npm start`
+
+#### Cloning Twijj Chat Server
+
+`git clone https://github.com/josh-velasquez/TwijjChatServer`
+Navigate to folder
+`npm install`
+To run the application
+`npm start`
+
+#### Cloning Twijj Stream Server
+
+`git clone https://github.com/josh-velasquez/TwijjStreamServer`
+Navigate to rtmpserver folder
+`npm install`
+To run the application
+`npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<br>
+<br>
+<br>
 
-### `npm test`
+# Live Deployment
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deploying To Build To Firebase
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-## Building the project
-
-- Run npm install on all three folders
-  - .gitignore excludes the node_modules
-
-# Setting up OBS
-
-- Create a scene
-- Select the video input
-- Go to settings and navigate to Stream
-  - Select Custom for Service
-  - Enter rtmp://localhost/live for Server
-  - Enter the ID of the stream (located at the client browser url)
-
-For more instructions:
-https://medium.com/@nabendu82/create-a-twitch-clone-using-react-1-25448cd92c0a
-OBS environment setup:
-https://medium.com/@nabendu82/create-a-twitch-clone-using-react-7-be3d116acffe
-
-
-## Installing new dependencies
-
-To install a new dependency, just enter the following (this saves it to the package json):
-npm install --save <dependency>
-
-
-## Deploying the project to firebase
 To deploy the client code to firebase, run the following command on the client folder:
-npm run build
+`npm run build`
 
 This will generate a build folder. Run the following command to deploy to website:
-firebase deploy
+`firebase deploy`
 
+## Setting Up AWS Servers
 
-Website Link:
-https://twijj-271803.web.app/
+There are two servers that are responsible for processing the stream and chat of the webapp. Both are running on AWS.
 
-NOTE: Since the rtmp server is hosted through amazon aws ec2 instance, the ip is sent over http. In order for the stream to load properly, navigate to the site settings and enable insecure content.
+### Starting Servers
 
-Ensure that the rtmp ip is correct and is running
+Start the instance state for both Twijj Chat and Twijj Stream Servers. Once running copy the IPv4 Public IP's for each server.
+SSH into each respective servers using the command
+`ssh -i ~/.ssh/<.pem file> ec2-user@<ip address>`
+Once you are logged in, navigate to the project folder and run the following command to run the server.
+`npm start`
+NOTE: You must do this twice on separate terminals. One for the chat and one for the stream server.
+
+Once this is set up, navigate to the Twijj database in firebase console and open the `serverip` collection.
+Paste the IP for each servers accordingly (i.e. Twijj Chat IP -> chatip and Twijj Stream IP -> ip)
+
+## Setting up OBS
+
+Open OBS and navigate to settings -> stream
+Navigate to the webapp home page, once your stream is created, click on select settings and copy the Stream URL and Stream Key
+Select the Service to Custom and paste the stream URL to the Server and the Stream Key to the Stream Key
+Select OK to save changes.
