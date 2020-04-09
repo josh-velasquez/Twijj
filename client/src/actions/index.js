@@ -105,6 +105,7 @@ export const editStream = (id, formValues) => async (dispatch) => {
       gametag: formValues.gametag,
     })
     .then(function () {
+      formValues.userid = id;
       dispatch({ type: EDIT_STREAM, payload: formValues });
       history.push("/");
     })
