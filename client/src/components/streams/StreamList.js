@@ -21,15 +21,26 @@ class StreamList extends React.Component {
     }
     if (src !== null) {
       return (
+        <span style={{height:"50%"}}>
         <img
           src={src}
           alt="large middle aligned icon camera"
-          width="30px"
-          height="30px"
+          style={{
+          width:"100%",
+          height:"15em",
+          }}
         ></img>
+        </span>
       );
     } else {
-      return <i className="large middle aligned icon camera" />;
+      return(   
+      <span style={{height:"50%"}}>
+        <i className="massive middle aligned icon camera" style={{
+          width:"100%",
+          height:"1.9em",
+          }}/>
+      </span>
+      );
     }
   }
 
@@ -44,14 +55,14 @@ class StreamList extends React.Component {
       return (<div class="three column row"> {this.props.streams.map((stream) => {
         return (
           <div className="column center aligned" key={stream.userid}>
-            {this.renderAdmin(stream)}
             {this.renderThumbnail(stream)}
-            <div className="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
+            <div class="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
               <Link to={`/streams/${stream.userid}`} className="header">
                 {stream.title}
               </Link>
             </div>
-            <div className="description" style={{width:"100%",overflow:"hidden",height:"4em"}}>{stream.description}</div>
+            <div class="ui fragment" style={{width:"100%",overflow:"hidden",height:"4em"}}>{stream.description}</div>
+            {this.renderAdmin(stream)}
           </div>
         );
       })} </div>)
