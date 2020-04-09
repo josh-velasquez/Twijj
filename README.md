@@ -1,7 +1,5 @@
 # Twijj
 
-Streaming service
-
 Twijj is a web application platform that allows users to easily live stream and share content with any number of other viewers online.
 Alongside streaming or viewing streams, users can also interact with each other through a live chat in each stream, and communicate with the stream host.
 
@@ -15,15 +13,15 @@ Emilio Alvarez Veronesi, Jeffery Huo, Jeffery Swarts, Joshua Velasquez, Yue Zhan
 
 ## Associated Github Repositories
 
-Client Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/Twijj)
-Chat Server Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/TwijjChatServer)
-Stream Server Side -> [https://github.com/josh-velasquez/TwijjStreamServer](https://github.com/josh-velasquez/TwijjStreamServer)
+- Client Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/Twijj)
+- Chat Server Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/TwijjChatServer)
+- Stream Server Side -> [https://github.com/josh-velasquez/TwijjStreamServer](https://github.com/josh-velasquez/TwijjStreamServer)
 
 ## Tools and Applications Used
 
-Database -> Firebase
-Server -> AWS (Chat and Stream)
-Hosting -> Google platform/Firebase
+- Database -> Firebase
+- Server -> AWS (Chat and Stream)
+- Hosting -> Google platform/Firebase
 
 ## Web Browser Setup
 
@@ -42,30 +40,29 @@ While in site settings, allow for third-party settings since this is needed by t
 
 #### Cloning Twijj
 
-`git clone https://github.com/josh-velasquez/Twijj`
-Navigate to the client folder
-`npm install`
-To run the application
-`npm start`
+`git clone https://github.com/josh-velasquez/Twijj` <br>
+Navigate to the client folder<br>
+`npm install`<br>
+To run the application<br>
+`npm start`<br>
 
 #### Cloning Twijj Chat Server
 
-`git clone https://github.com/josh-velasquez/TwijjChatServer`
-Navigate to folder
-`npm install`
-To run the application
-`npm start`
+`git clone https://github.com/josh-velasquez/TwijjChatServer`<br>
+Navigate to folder<br>
+`npm install`<br>
+To run the application<br>
+`npm start`<br>
 
 #### Cloning Twijj Stream Server
 
-`git clone https://github.com/josh-velasquez/TwijjStreamServer`
-Navigate to rtmpserver folder
-`npm install`
-To run the application
-`npm start`
+`git clone https://github.com/josh-velasquez/TwijjStreamServer`<br>
+Navigate to rtmpserver folder<br>
+`npm install`<br>
+To run the application<br>
+`npm start`<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<br>
 <br>
 <br>
 
@@ -73,10 +70,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Deploying To Build To Firebase
 
-To deploy the client code to firebase, run the following command on the client folder:
+To deploy the client code to firebase, run the following command on the client folder:<br>
 `npm run build`
 
-This will generate a build folder. Run the following command to deploy to website:
+This will generate a build folder. Run the following command to deploy to website:<br>
 `firebase deploy`
 
 ## Setting Up AWS Servers
@@ -86,10 +83,10 @@ There are two servers that are responsible for processing the stream and chat of
 ### Starting Servers
 
 Start the instance state for both Twijj Chat and Twijj Stream Servers. Once running copy the IPv4 Public IP's for each server.
-SSH into each respective servers using the command
-`ssh -i ~/.ssh/<.pem file> ec2-user@<ip address>`
-Once you are logged in, navigate to the project folder and run the following command to run the server.
-`npm start`
+SSH into each respective servers using the command<br>
+`ssh -i ~/.ssh/<.pem file> ec2-user@<ip address>`<br>
+Once you are logged in, navigate to the project folder and run the following command to run the server.<br>
+`npm start`<br>
 NOTE: You must do this twice on separate terminals. One for the chat and one for the stream server.
 
 Once this is set up, navigate to the Twijj database in firebase console and open the `serverip` collection.
