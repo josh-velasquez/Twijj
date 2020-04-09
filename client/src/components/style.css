@@ -1,3 +1,10 @@
+:root {
+  --main: #fff;
+  --main-darker: #c2c2c2;
+  --main-dark: #696F75;
+  --second: #7289DA;
+}
+
 #logo {
 	float: left;
 }
@@ -109,19 +116,48 @@ ul {
 
 #chat-messages {
   width: 100%;
+  background-color: var(--main);
+  border: 1px solid var(--main-dark);
+  border-radius: 5px;
+}
+
+#chat-messages .message {
+  padding: 0.4em 0.8em;
+  word-break: break-all;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#chat-messages .message:hover {
+  background-color: var(--main-dark);
+}
+
+#chat-messages .message-username {
+  font-weight: bold;
 }
 
 #chat-form {
-  width: 100%;
-  display: flex;
+  padding-top: 1rem;
 }
 
-#chat-form > input {
-  flex: 1 1 auto;
+#chat-form > textarea {
+  padding: 0.5em 0.8em 0 0.8em;
+  width: 100%;
+  resize: none;
+  height: 5em;
+  max-height: unset;
+  min-height: unset;
+  background-color: var(--main-darker);
+  border: 1px solid var(--main-dark);
+  border-radius: 5px;
+}
+
+#chat-form > textarea:focus {
+  background-color: var(--main);
 }
 
 #chat-form > button {
-  flex: 0 0 auto;
+  float: right;
 }
 
 .content-scrollable {

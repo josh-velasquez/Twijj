@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchProfile, fetchStream, fetchStreamServerIp } from "../../actions";
+import { fetchStream, fetchStreamServerIp } from "../../actions";
 import StreamChat from "./StreamChat";
 import flv from "flv.js";
 
@@ -64,7 +64,7 @@ class StreamShow extends React.Component {
             <h5>{description}</h5>
           </div>
         </div>
-        <StreamChat />
+        <StreamChat stream={this.props.stream}/>
       </div>
     );
   }
@@ -77,8 +77,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchProfile,
-  fetchStream,
-  fetchStreamServerIp,
-})(StreamShow);
+export default connect(
+  mapStateToProps,
+  { fetchStream, fetchStreamServerIp }
+)(StreamShow);
