@@ -175,3 +175,7 @@ ul {
 .content-scrollable > :last-child {
   margin-bottom: 1rem;
 }
+
+#white-text {
+  color: white;
+}

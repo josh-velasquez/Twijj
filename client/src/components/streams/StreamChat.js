@@ -89,7 +89,7 @@ class StreamChat extends React.Component {
       this.props.stream.user_info.username;
     if (!this.props.messages || this.props.messages.length === 0) {
       return (
-        <div className="message empty" style={{ color: "white" }}>
+        <div id="white-text" className="message empty" >
           <span>Send a message to chat with {username || "User"}!</span>
         </div>
       );
@@ -97,7 +97,7 @@ class StreamChat extends React.Component {
 
     return this.props.messages.map((message) => {
       return (
-        <div className="message" key={message.messageid} style={{color: "white"}}>
+        <div id="white-text" className="message" key={message.messageid}>
           <span className="message-username">{`${message.username}: `}</span>
           <span className="message-text">{message.text}</span>
         </div>
@@ -118,7 +118,7 @@ class StreamChat extends React.Component {
     return (
       <div id="chat-container" className="four wide column">
         <div className="ui secondary menu header center aligned grid">
-          <div className="ui item" style={{ color: "white" }}>
+          <div className="ui item" id="white-text">
             Stream Chat
           </div>
         </div>

@@ -49,22 +49,23 @@ class StreamShow extends React.Component {
       <div id="stream-show" className="ui grid">
         <div id="stream-container" className="twelve wide column">
           <div className="ui secondary menu header">
-            <div className="item" style={{ color: "white" }}>
+            <div className="item" id="white-text">
               {username || "User"}'s Stream
             </div>
             <div
               className="item right"
-              style={{ paddingTop: 10, paddingBottom: 0 }}
+              style={{ paddingTop: 0, paddingBottom: 0 }}
             >
               <button className="ui teal button floated">Subscribe</button>
             </div>
           </div>
           <div
             className="content-scrollable"
-            style={{ color: "white", paddingLeft: 5 }}
+            id="white-text"
+            style={{ paddingLeft: 5 }}
           >
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
-            <div style={{ padding: 10 }}>
+            <div>
               <h1>{title}</h1>
               <h4>#{gametag}</h4>
               <h5>{description}</h5>

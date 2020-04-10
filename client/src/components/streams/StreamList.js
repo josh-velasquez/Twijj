@@ -37,9 +37,7 @@ class StreamList extends React.Component {
     if (this.props.streams === undefined || this.props.streams.length === 0) {
       return (
         <div>
-          <h4 style={{ color: "white" }}>
-            Sorry, no streams available right now.
-          </h4>
+          <h4 id="white-text">Sorry, no streams available right now.</h4>
         </div>
       );
     } else {
@@ -52,7 +50,7 @@ class StreamList extends React.Component {
               <Link to={`/streams/${stream.userid}`} className="header">
                 {stream.title}
               </Link>
-              <div className="description" style={{ color: "white" }}>
+              <div id="white-text" className="description">
                 {stream.description}
               </div>
             </div>
@@ -121,7 +119,7 @@ class StreamList extends React.Component {
   render() {
     return (
       <div>
-        <h2 style={{ color: "white" }}>Streams</h2>
+        <h2 id="white-text">Streams</h2>
         <div className="ui celled list">{this.renderList()}</div>
         {this.renderCreate()}
       </div>
