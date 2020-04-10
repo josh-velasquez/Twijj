@@ -17,7 +17,9 @@ const App = () => {
       <Router history={history}>
         <Header />
         <div className="content">
-          <SideNav />
+          <div className="hideOnMobile">
+            <SideNav />
+          </div>
           <div className="ui content-main">
             <Switch>
               <Route path="/" exact component={StreamList} />
