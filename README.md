@@ -99,3 +99,8 @@ Open OBS and navigate to settings -> stream
 Navigate to the webapp home page, once your stream is created, click on select settings and copy the Stream URL and Stream Key
 Select the Service to Custom and paste the stream URL to the Server and the Stream Key to the Stream Key
 Click Apply and then OK to save changes.
+
+## Checking Stream Server Status
+
+You can checkout the status of the stream server by going to
+[http://localhost:8000/admin/](http://localhost:8000/admin/)
