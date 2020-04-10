@@ -13,7 +13,7 @@ Emilio Alvarez Veronesi, Jeffery Huo, Jeffery Swarts, Joshua Velasquez, Yue Zhan
 
 ## Associated Github Repositories
 
-- Client Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/Twijj)
+- Client Side -> [https://github.com/josh-velasquez/Twijj](https://github.com/josh-velasquez/Twijj)
 - Chat Server Side -> [https://github.com/josh-velasquez/TwijjChatServer](https://github.com/josh-velasquez/TwijjChatServer)
 - Stream Server Side -> [https://github.com/josh-velasquez/TwijjStreamServer](https://github.com/josh-velasquez/TwijjStreamServer)
 
@@ -28,11 +28,12 @@ Emilio Alvarez Veronesi, Jeffery Huo, Jeffery Swarts, Joshua Velasquez, Yue Zhan
 ### Allowing Insecure Content
 
 Once the webapp is launched, navigate to your browser settings and then to site settings and allow for insecure content.
-Since the stream from the AWS servers is sent over http without encryption, this is needed for the stream request to the AWS server to work.
+Since the stream and chat from the AWS servers is sent over http without encryption, this is needed for the stream requests and chat requests to the AWS server to work.
+Alternatively, you can click on the lock icon on the address bar and navigate to the site settings there.
 
 ### Enabling Third-Party Cookies
 
-While in site settings, allow for third-party settings since this is needed by the Google Sign In.
+Since Google Sign-In requires third-party cookies in order to function correctly, ensure that your browser is not blocking third-party cookies. To do this in Chrome, go to Settings > Privacy and Security > Cookies and Site Data > Block third-party cookies. This option should be disabled. Having it enabled may result in the Google Sign-In button not rendering at all.
 
 ## Deployment Instructions
 
