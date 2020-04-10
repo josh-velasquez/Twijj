@@ -42,7 +42,7 @@ class StreamShow extends React.Component {
     if (!this.props.stream) {
       return <div>Loading...</div>;
     }
-    const { title, description, gametag } = this.props.stream;
+    const { title, description, gametag, viewer_count } = this.props.stream;
     const username =
       this.props.stream.user_info && this.props.stream.user_info.username;
     return (
@@ -60,7 +60,7 @@ class StreamShow extends React.Component {
           <div className="content-scrollable">
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
             <h1>{title}</h1>
-            <h4>#{gametag}</h4>
+            <h4><span>#{gametag}</span><span style={{float: "right", "margin-right": "1em"}}>Viewers: {viewer_count || 0}</span></h4>
             <h5>{description}</h5>
           </div>
         </div>
