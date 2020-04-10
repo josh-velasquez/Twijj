@@ -4,7 +4,6 @@ import {
   CREATE_STREAM,
   EDIT_STREAM,
   DELETE_STREAM,
-  VIEWER_COUNT_UPDATE,
 } from "../actions/types";
 import _ from "lodash";
 
@@ -20,14 +19,6 @@ export default (state = {}, action) => {
       return { ...state, [action.payload.userid]: action.payload };
     case DELETE_STREAM:
       return _.omit(state, action.payload);
-    case VIEWER_COUNT_UPDATE:
-      return {
-        ...state,
-        [action.payload.userid]: {
-          ...state[action.payload.userid],
-          viewer_count: action.payload.viewer_count,
-        },
-      };
     default:
       return state;
   }
