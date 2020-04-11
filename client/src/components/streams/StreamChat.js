@@ -130,6 +130,7 @@ class StreamChat extends React.Component {
         </div>
         <form
           id="chat-form"
+          className="hide-on-mobile"
           ref={(element) => (this.message_form = element)}
           action=""
           onSubmit={(e) => this.handleSubmit(e)}

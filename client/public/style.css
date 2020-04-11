@@ -19,7 +19,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-    .hideOnMobile {
+    .hide-on-mobile {
         display: none !important;
     }
 }

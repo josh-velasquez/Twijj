@@ -17,7 +17,7 @@ const App = () => {
       <Router history={history}>
         <Header />
         <div className="content">
-          <div className="hideOnMobile">
+          <div className="hide-on-mobile">
             <SideNav />
           </div>
           <div className="ui content-main">
