@@ -27,9 +27,9 @@ class Profile extends React.Component {
         >
           Update
         </button>
-        <Link to="/" className="ui button">
+        <button className="ui button" onClick={() => history.goBack()}>
           Cancel
-        </Link>
+        </button>
       </React.Fragment>
     );
   }
@@ -86,7 +86,7 @@ class Profile extends React.Component {
         title="Profile"
         content={this.renderContent()}
         actions={this.renderActions()}
-        onDismiss={() => history.push("/")}
+        onDismiss={() => history.goBack()}
       />
     );
   }
