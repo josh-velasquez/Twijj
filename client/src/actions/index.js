@@ -21,7 +21,7 @@ import {
   CHAT_MESSAGE_SENDING,
   CHAT_MESSAGE_SENT,
   CHAT_MESSAGE_ADD,
-  FETCH_ADMINS
+  FETCH_ADMINS,
 } from "./types";
 import database from "../config/firebaseDb";
 import io from "socket.io-client";
@@ -189,7 +189,7 @@ export const editProfile = (id, formValues) => async (dispatch) => {
     })
     .then(function () {
       dispatch({ type: EDIT_PROFILE, payload: formValues });
-      history.push("/");
+      history.goBack();
     })
     .catch(function (error) {
       console.error("Failed to update profile: " + error);
@@ -216,11 +216,12 @@ export const chatConnect = (streamid) => async (dispatch) => {
     .collection("serverip")
     .get()
     .then((querySnapshot) => {
-      const chatServerIp = querySnapshot.docs.map((doc) => doc.data())[0].chatip;
+      const chatServerIp = querySnapshot.docs.map((doc) => doc.data())[0]
+        .chatip;
       socket = io(`http://${chatServerIp}:8001`, {
         query: {
-          streamid: streamid
-        }
+          streamid: streamid,
+        },
       });
 
       socket.on("connect", () => {
@@ -232,7 +233,7 @@ export const chatConnect = (streamid) => async (dispatch) => {
       });
 
       socket.on("new message", (message) => {
-        dispatch({ type: CHAT_MESSAGE_ADD, message});
+        dispatch({ type: CHAT_MESSAGE_ADD, message });
       });
 
       socket.on("viewer count", (count) => {
@@ -240,7 +241,7 @@ export const chatConnect = (streamid) => async (dispatch) => {
         console.log("Viewer count", count);
       });
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.error("Failed to retrieve chat server ip: " + error);
     });
 };
@@ -271,7 +272,7 @@ export const chatMessageSend = (message) => async (dispatch, getState) => {
 
   socket.on("message received", () => {
     dispatch({ type: CHAT_MESSAGE_SENT });
-  })
+  });
 };
 
 export const chatDisconnect = () => async (dispatch) => {
