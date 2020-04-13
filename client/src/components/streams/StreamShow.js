@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchProfile, fetchStream, fetchStreamServerIp } from "../../actions";
+import { fetchStream, fetchStreamServerIp } from "../../actions";
 import StreamChat from "./StreamChat";
 import flv from "flv.js";
 
@@ -49,22 +49,29 @@ class StreamShow extends React.Component {
       <div id="stream-show" className="ui grid">
         <div id="stream-container" className="twelve wide column">
           <div className="ui secondary menu header">
-            <div className="item">{username || "User"}'s Stream</div>
+            <div className="item white-text">
+              {username || "User"}'s Stream
+            </div>
             <div
               className="item right"
               style={{ paddingTop: 0, paddingBottom: 0 }}
             >
-              <button className="ui red button floated">Subscribe</button>
+              <button className="ui teal button floated">Subscribe</button>
             </div>
           </div>
-          <div className="content-scrollable">
+          <div
+            className="content-scrollable white-text"
+            style={{ paddingLeft: 5 }}
+          >
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
-            <h1>{title}</h1>
-            <h4>#{gametag}</h4>
-            <h5>{description}</h5>
+            <div>
+              <h1>{title}</h1>
+              <h4>#{gametag}</h4>
+              <h5>{description}</h5>
+            </div>
           </div>
         </div>
-        <StreamChat />
+        <StreamChat stream={this.props.stream} />
       </div>
     );
   }
@@ -77,8 +84,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchProfile,
-  fetchStream,
-  fetchStreamServerIp,
-})(StreamShow);
+export default connect(mapStateToProps, { fetchStream, fetchStreamServerIp })(
+  StreamShow
+);

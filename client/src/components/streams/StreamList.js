@@ -40,12 +40,12 @@ class StreamList extends React.Component {
   }
 
   renderList() {
-    const alternatingColor = ['#d5d5d5', '#a9a9a9'];
+    const alternatingColor = ['#3c3c3c', '#1b1b1b'];
     
     if (this.props.streams === undefined || this.props.streams.length === 0) {
       return (
         <div>
-          <h4>Sorry, no streams available right now.</h4>
+          <h4 className="white-text">Sorry, no streams available right now.</h4>
         </div>
       );
     } else {
@@ -58,7 +58,7 @@ class StreamList extends React.Component {
                 {stream.title}
               </Link>
             </div>
-            <div class="ui fragment" style={{width:"100%",overflow:"hidden",height:"4em"}}>{stream.description}</div>
+            <div class="ui fragment description white-text" style={{width:"100%",overflow:"hidden",height:"4em"}}>{stream.description}</div>
             {this.renderAdmin(stream)}
           </div>
         );
@@ -125,7 +125,7 @@ class StreamList extends React.Component {
   render() {
     return (
       <div>
-        <h2>Streams</h2>
+        <h2 className="white-text">Streams</h2>
         <div class="carousel">Div for Carousel here</div>
         <div className="ui grid container">{this.renderList()}</div>
         {this.renderCreate()}

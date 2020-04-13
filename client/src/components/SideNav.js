@@ -8,14 +8,14 @@ class SideNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      subscriptions: []
+      subscriptions: [],
     };
   }
 
   retrieveSubscribers() {
     /*replace this code with actual code to populate subcriptions state*/
-    this.setState(state => ({
-      subscriptions: [HolderPNG, HolderPNG]
+    this.setState((state) => ({
+      subscriptions: [HolderPNG, HolderPNG],
     }));
   }
 
@@ -40,10 +40,10 @@ class SideNav extends React.Component {
 
   render() {
     return (
-      <div className="sidenav">
+      <div className="sidenav" style={{ backgroundColor: "#1F1F23" }}>
         <div className="subIcon">
           <span>
-            <i className="bars large icon"></i>
+            <i className="bars large icon white-text"></i>
           </span>
         </div>
         {this.displaySubscribers()}
