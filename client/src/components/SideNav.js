@@ -43,7 +43,7 @@ class SideNav extends React.Component {
       <div className="sidenav" style={{ backgroundColor: "#1F1F23" }}>
         <div className="subIcon">
           <span>
-            <i className="bars large icon" id="white-text"></i>
+            <i className="bars large icon white-text"></i>
           </span>
         </div>
         {this.displaySubscribers()}

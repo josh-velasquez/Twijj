@@ -9,15 +9,13 @@ const Modal = (props) => {
         className="ui standard modal visible active"
       >
         <div
-          id="white-text"
-          className="header"
+          className="header white-text"
           style={{ background: "#1b1c1d" }}
         >
           {props.title}
         </div>
         <div
-          id="white-text"
-          className="content"
+          className="content white-text"
           style={{ background: "#292929" }}
         >
           {props.content}

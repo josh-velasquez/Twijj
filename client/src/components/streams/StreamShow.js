@@ -49,7 +49,7 @@ class StreamShow extends React.Component {
       <div id="stream-show" className="ui grid">
         <div id="stream-container" className="twelve wide column">
           <div className="ui secondary menu header">
-            <div className="item" id="white-text">
+            <div className="item white-text">
               {username || "User"}'s Stream
             </div>
             <div
@@ -60,8 +60,7 @@ class StreamShow extends React.Component {
             </div>
           </div>
           <div
-            className="content-scrollable"
-            id="white-text"
+            className="content-scrollable white-text"
             style={{ paddingLeft: 5 }}
           >
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
