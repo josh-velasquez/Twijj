@@ -69,7 +69,7 @@ To run the application<br>
 
 # Live Deployment
 
-## Deploying To Build To Firebase
+## Deploying a Build To Firebase
 
 To deploy the client code to firebase, run the following command on the client folder:<br>
 `npm run build`
