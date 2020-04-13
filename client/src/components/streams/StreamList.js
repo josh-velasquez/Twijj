@@ -87,7 +87,7 @@ class StreamList extends React.Component {
     } else if (this.props.admins !== undefined) {
       if (
         this.props.admins.filter(
-          (admin) => admin.adminid === this.props.currentUserId
+          (admin) => admin.userid === this.props.currentUserId
         ).length !== 0
       ) {
         return (
