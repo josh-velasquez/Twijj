@@ -57,8 +57,8 @@ class StreamList extends React.Component {
                 {stream.title}
               </div>
               <div class="ui fragment content-scrollable description white-text" style={{width:"100%",height:"4em"}}>{stream.description}</div>
-              {this.renderAdmin(stream)}
             </Link>
+              {this.renderAdmin(stream)}
           </div>
         );
       })} </div>)
@@ -68,22 +68,22 @@ class StreamList extends React.Component {
   renderAdmin(stream) {
     if (stream.userid === this.props.currentUserId) {
       return (
-        <div className="right floated content">
+        <div className="buttons-container">
           <Link
             to={`/streams/obssettings/${stream.userid}`}
-            className="ui button primary"
+            className="ui button primary buttons-style"
           >
             Stream Settings
           </Link>
           <Link
             to={`/streams/edit/${stream.userid}`}
-            className="ui button primary"
+            className="ui button primary buttons-style"
           >
             Edit
           </Link>
           <Link
             to={`/streams/delete/${stream.userid}`}
-            className="ui button negative"
+            className="ui button negative buttons-style"
           >
             Delete
           </Link>
@@ -99,7 +99,7 @@ class StreamList extends React.Component {
           <div className="right floated content">
             <Link
               to={`/streams/delete/${stream.userid}`}
-              className="ui button negative"
+              className="ui button negative buttons-style"
             >
               Delete
             </Link>
