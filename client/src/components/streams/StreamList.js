@@ -57,8 +57,8 @@ class StreamList extends React.Component {
                 {stream.title}
               </div>
               <div class="ui fragment content-scrollable description white-text" style={{width:"100%",height:"4em"}}>{stream.description}</div>
-              {this.renderAdmin(stream)}
             </Link>
+              {this.renderAdmin(stream)}
           </div>
         );
       })} </div>)
