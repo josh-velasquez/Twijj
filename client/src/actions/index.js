@@ -21,6 +21,7 @@ import {
   CHAT_MESSAGE_SENDING,
   CHAT_MESSAGE_SENT,
   CHAT_MESSAGE_ADD,
+  VIEWER_COUNT_UPDATE,
   FETCH_ADMINS,
 } from "./types";
 import database from "../config/firebaseDb";
@@ -237,8 +238,7 @@ export const chatConnect = (streamid) => async (dispatch) => {
       });
 
       socket.on("viewer count", (count) => {
-        // TODO: Throw this into the state and display it.
-        console.log("Viewer count", count);
+        dispatch({ type: VIEWER_COUNT_UPDATE, payload: {viewer_count: count} });
       });
     })
     .catch(function (error) {
