@@ -48,7 +48,7 @@ class Profile extends React.Component {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
-        <label>{label}</label>
+        <label className="white-text">{label}</label>
         <input {...input} autoComplete="off" />
         {this.renderError(meta)}
       </div>
@@ -59,7 +59,7 @@ class Profile extends React.Component {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
-        <label>{label}</label>
+        <label className="white-text">{label}</label>
         <textarea {...input} autoComplete="off" />
         {this.renderError(meta)}
       </div>
