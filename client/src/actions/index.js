@@ -291,7 +291,6 @@ export const fetchAdmins = () => async (dispatch) => {
     .get()
     .then((querySnapshot) => {
       const data = querySnapshot.docs.map((doc) => doc.data());
-      console.log(data)
       dispatch({ type: FETCH_ADMINS, payload: data });
     })
     .catch(function (error) {
