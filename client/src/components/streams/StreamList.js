@@ -20,7 +20,6 @@ class StreamList extends React.Component {
           src = thumbnails[key];
           iconWidth = "100%";
         }
-        console.log(key)
       }
     }
     if (src !== null) {
@@ -52,14 +51,14 @@ class StreamList extends React.Component {
       return (<div class="stackable three column equal height row"> {this.props.streams.map((stream, index) => {
         return (
           <div className="column center aligned" style={{height:"400px", backgroundColor:alternatingColor[index % alternatingColor.length], padding:"1%"}} key={stream.userid}>
-            {this.renderThumbnail(stream)}
-            <div class="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
-              <Link to={`/streams/${stream.userid}`} className="header">
+            <Link to={`/streams/${stream.userid}`} className="header">
+              {this.renderThumbnail(stream)}
+              <div class="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
                 {stream.title}
-              </Link>
-            </div>
-            <div class="ui fragment description white-text" style={{width:"100%",overflow:"hidden",height:"4em"}}>{stream.description}</div>
-            {this.renderAdmin(stream)}
+              </div>
+              <div class="ui fragment content-scrollable description white-text" style={{width:"100%",height:"4em"}}>{stream.description}</div>
+              {this.renderAdmin(stream)}
+            </Link>
           </div>
         );
       })} </div>)
