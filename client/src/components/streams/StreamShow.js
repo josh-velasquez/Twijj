@@ -66,7 +66,7 @@ class StreamShow extends React.Component {
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
             <div>
               <h1>{title}</h1>
-              <h4>#{gametag}</h4>
+              <h4><span>#{gametag}</span><span style={{float: "right", "margin-right": "1em"}}>Viewers: {this.props.viewer_count || 0}</span></h4>
               <h5>{description}</h5>
             </div>
           </div>
@@ -81,6 +81,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     stream: state.streams[ownProps.match.params.id],
     server: state.streamServer.serverIp,
+    viewer_count: state.chat.viewer_count
   };
 };
 
