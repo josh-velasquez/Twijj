@@ -11,35 +11,30 @@ class StreamList extends React.Component {
   }
 
   renderThumbnail(stream) {
-    var src = null;
+    var src = thumbnails["default"];
+    let iconWidth = "40%";
+    let iconHeight = "60%";
     if (stream.gametag !== undefined) {
       for (var key in thumbnails) {
         if (key === stream.gametag.toLowerCase()) {
           src = thumbnails[key];
+          iconWidth = "100%";
         }
+        console.log(key)
       }
     }
     if (src !== null) {
       return (
-        <span style={{height:"50%"}}>
+        <span>
         <img
           src={src}
           alt="large middle aligned icon camera"
           style={{
-          width:"100%",
-          height:"15em",
+          width:iconWidth,
+          height:iconHeight,
           }}
         ></img>
         </span>
-      );
-    } else {
-      return(   
-      <span style={{height:"50%"}}>
-        <i className="massive middle aligned icon camera" style={{
-          width:"100%",
-          height:"1.9em",
-          }}/>
-      </span>
       );
     }
   }
@@ -54,9 +49,9 @@ class StreamList extends React.Component {
         </div>
       );
     } else {
-      return (<div class="three column row"> {this.props.streams.map((stream, index) => {
+      return (<div class="stackable three column equal height row"> {this.props.streams.map((stream, index) => {
         return (
-          <div className="column center aligned" style={{backgroundColor:alternatingColor[index % alternatingColor.length], padding:"1%"}} key={stream.userid}>
+          <div className="column center aligned" style={{height:"400px", backgroundColor:alternatingColor[index % alternatingColor.length], padding:"1%"}} key={stream.userid}>
             {this.renderThumbnail(stream)}
             <div class="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
               <Link to={`/streams/${stream.userid}`} className="header">
@@ -132,7 +127,7 @@ class StreamList extends React.Component {
       <div>
         <h2>Streams</h2>
         <div class="carousel">Div for Carousel here</div>
-        <div className="ui relaxed grid">{this.renderList()}</div>
+        <div className="ui grid container">{this.renderList()}</div>
         {this.renderCreate()}
       </div>
     );
