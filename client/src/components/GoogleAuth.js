@@ -1,52 +1,45 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchProfile, awaitSignIn, signOut } from "../actions";
+import firebase from "firebase";
 
 class GoogleAuth extends React.Component {
-  componentDidUpdate(){
-    if(this.props.rejectSignIn === true){
-      this.auth.signOut();
+  provider = new firebase.auth.GoogleAuthProvider();
+
+  componentDidUpdate() {
+    if (this.props.rejectSignIn === true) {
+      firebase.auth().signOut();
     }
   }
-  
+
   componentDidMount() {
-    window.gapi.load("client:auth2", () => {
-      window.gapi.client
-        .init({
-          clientId:
-            "434963010544-itr9jvms5cn5i6e4097458nrv17uv5me.apps.googleusercontent.com",
-          scope: "email"
-        })
-        .then(() => {
-          this.auth = window.gapi.auth2.getAuthInstance();
-          this.onAuthChange(this.auth.isSignedIn.get());
-          this.auth.isSignedIn.listen(this.onAuthChange);
-        });
-    });
+    firebase.auth().onAuthStateChanged(this.onAuthChange);
   }
-  onAuthChange = isSignedIn => {
-    if (isSignedIn) {
+
+  onAuthChange = (user) => {
+    if (user) {
       this.props.fetchProfile({
-        id: this.auth.currentUser.get().getId(), 
-        name: this.auth.currentUser.get().getBasicProfile().getName(), 
-        email: this.auth.currentUser.get().getBasicProfile().getEmail()
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
       });
-      this.props.awaitSignIn(
-        this.auth.currentUser.get().getId(), 
-        this.auth.currentUser.get().getBasicProfile().getName(), 
-        this.auth.currentUser.get().getBasicProfile().getEmail()
-      );
+      this.props.awaitSignIn(user.uid, user.displayName, user.email);
     } else {
       this.props.signOut();
     }
   };
 
   onSignInClick = () => {
-    this.auth.signIn();
+    firebase
+      .auth()
+      .signInWithPopup(this.provider)
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   onSignOutClick = () => {
-    this.auth.signOut();
+    firebase.auth().signOut();
   };
 
   render() {
@@ -54,9 +47,7 @@ class GoogleAuth extends React.Component {
   }
 
   renderAuthButton() {
-    if (this.props.isSignedIn === null) {
-      return null;
-    } else if (this.props.isSignedIn) {
+    if (this.props.isSignedIn) {
       return (
         <button onClick={this.onSignOutClick} className="ui red google button">
           <i className="google icon" />
@@ -74,14 +65,13 @@ class GoogleAuth extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { 
-    isSignedIn: state.auth.isSignedIn, 
-    rejectSignIn: state.auth.rejectSignIn
+const mapStateToProps = (state) => {
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    rejectSignIn: state.auth.rejectSignIn,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchProfile, awaitSignIn, signOut }
-)(GoogleAuth);
+export default connect(mapStateToProps, { fetchProfile, awaitSignIn, signOut })(
+  GoogleAuth
+);

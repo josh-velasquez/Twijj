@@ -238,7 +238,10 @@ export const chatConnect = (streamid) => async (dispatch) => {
       });
 
       socket.on("viewer count", (count) => {
-        dispatch({ type: VIEWER_COUNT_UPDATE, payload: {viewer_count: count} });
+        dispatch({
+          type: VIEWER_COUNT_UPDATE,
+          payload: { viewer_count: count },
+        });
       });
     })
     .catch(function (error) {
@@ -286,7 +289,8 @@ export const chatDisconnect = () => async (dispatch) => {
 
 export const fetchAdmins = () => async (dispatch) => {
   database
-    .collection("admins")
+    .collection("users")
+    .where("admin", "==", true)
     .get()
     .then((querySnapshot) => {
       const data = querySnapshot.docs.map((doc) => doc.data());

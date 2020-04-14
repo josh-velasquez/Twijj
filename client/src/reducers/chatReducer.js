@@ -6,7 +6,7 @@ import {
   CHAT_MESSAGE_SENDING,
   CHAT_MESSAGE_SENT,
   CHAT_MESSAGE_ADD,
-  VIEWER_COUNT_UPDATE
+  VIEWER_COUNT_UPDATE,
 } from "../actions/types";
 
 export default (state = {}, action) => {
@@ -24,7 +24,7 @@ export default (state = {}, action) => {
     case CHAT_MESSAGE_SENT:
       return { ...state, sending: false };
     case CHAT_MESSAGE_ADD:
-      return { ...state, messages: [...state.messages, action.message]}
+      return { ...state, messages: [...state.messages, action.message] };
     case VIEWER_COUNT_UPDATE:
       return { ...state, viewer_count: action.payload.viewer_count };
     default:

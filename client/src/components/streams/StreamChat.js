@@ -89,7 +89,7 @@ class StreamChat extends React.Component {
       this.props.stream.user_info.username;
     if (!this.props.messages || this.props.messages.length === 0) {
       return (
-        <div className="message empty white-text" >
+        <div className="message empty white-text">
           <span>Send a message to chat with {username || "User"}!</span>
         </div>
       );
@@ -118,9 +118,7 @@ class StreamChat extends React.Component {
     return (
       <div id="chat-container" className="four wide column">
         <div className="ui secondary menu header center aligned grid">
-          <div className="ui item white-text">
-            Stream Chat
-          </div>
+          <div className="ui item white-text">Stream Chat</div>
         </div>
         <div
           id="chat-messages"
@@ -132,6 +130,7 @@ class StreamChat extends React.Component {
         </div>
         <form
           id="chat-form"
+          className="hide-on-mobile"
           ref={(element) => (this.message_form = element)}
           action=""
           onSubmit={(e) => this.handleSubmit(e)}
