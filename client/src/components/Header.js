@@ -16,7 +16,7 @@ const Header = () => {
       </div>
       <a className="item">Streams</a>
       <a className="item">Browse</a>
-      <div className="right menu">
+      <div className="right menu hide-on-mobile">
         <div className="item">
           <div className="ui icon input">
             <input type="text" placeholder="Search..." />

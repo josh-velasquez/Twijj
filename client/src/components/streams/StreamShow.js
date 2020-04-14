@@ -46,7 +46,7 @@ class StreamShow extends React.Component {
     const username =
       this.props.stream.user_info && this.props.stream.user_info.username;
     return (
-      <div id="stream-show" className="ui grid">
+      <div id="stream-show" className="ui grid stackable">
         <div id="stream-container" className="twelve wide column">
           <div className="ui secondary menu header">
             <div className="item white-text">
