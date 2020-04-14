@@ -238,7 +238,10 @@ export const chatConnect = (streamid) => async (dispatch) => {
       });
 
       socket.on("viewer count", (count) => {
-        dispatch({ type: VIEWER_COUNT_UPDATE, payload: {viewer_count: count} });
+        dispatch({
+          type: VIEWER_COUNT_UPDATE,
+          payload: { viewer_count: count },
+        });
       });
     })
     .catch(function (error) {

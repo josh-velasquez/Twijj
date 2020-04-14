@@ -49,9 +49,7 @@ class StreamShow extends React.Component {
       <div id="stream-show" className="ui grid stackable">
         <div id="stream-container" className="twelve wide column">
           <div className="ui secondary menu header">
-            <div className="item white-text">
-              {username || "User"}'s Stream
-            </div>
+            <div className="item white-text">{username || "User"}'s Stream</div>
             <div
               className="item right"
               style={{ paddingTop: 0, paddingBottom: 0 }}
@@ -66,7 +64,12 @@ class StreamShow extends React.Component {
             <video ref={this.videoRef} style={{ width: "100%" }} controls />
             <div>
               <h1>{title}</h1>
-              <h4><span>#{gametag}</span><span style={{float: "right", "margin-right": "1em"}}>Viewers: {this.props.viewer_count || 0}</span></h4>
+              <h4>
+                <span>#{gametag}</span>
+                <span style={{ float: "right", "margin-right": "1em" }}>
+                  Viewers: {this.props.viewer_count || 0}
+                </span>
+              </h4>
               <h5>{description}</h5>
             </div>
           </div>
@@ -81,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     stream: state.streams[ownProps.match.params.id],
     server: state.streamServer.serverIp,
-    viewer_count: state.chat.viewer_count
+    viewer_count: state.chat.viewer_count,
   };
 };
 
