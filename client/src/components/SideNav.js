@@ -40,7 +40,7 @@ class SideNav extends React.Component {
 
   render() {
     return (
-      <div className="sidenav hide-on-mobile" style={{ backgroundColor: "#1F1F23" }}>
+      <div className="hide-on-mobile" style={{ backgroundColor: "#1F1F23" }}>
         <div className="subIcon">
           <span>
             <i className="bars large icon white-text"></i>

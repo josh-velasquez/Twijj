@@ -25,22 +25,22 @@ class StreamList extends React.Component {
     if (src !== null) {
       return (
         <span>
-        <img
-          src={src}
-          alt="large middle aligned icon camera"
-          style={{
-          width:iconWidth,
-          height:iconHeight,
-          }}
-        ></img>
+          <img
+            src={src}
+            alt="large middle aligned icon camera"
+            style={{
+              width: iconWidth,
+              height: iconHeight,
+            }}
+          ></img>
         </span>
       );
     }
   }
 
   renderList() {
-    const alternatingColor = ['#3c3c3c', '#1b1b1b'];
-    
+    const alternatingColor = ["#3c3c3c", "#1b1b1b"];
+
     if (this.props.streams === undefined || this.props.streams.length === 0) {
       return (
         <div>
@@ -48,20 +48,46 @@ class StreamList extends React.Component {
         </div>
       );
     } else {
-      return (<div class="stackable three column equal height row"> {this.props.streams.map((stream, index) => {
-        return (
-          <div className="column center aligned" style={{height:"400px", backgroundColor:alternatingColor[index % alternatingColor.length], padding:"1%"}} key={stream.userid}>
-            <Link to={`/streams/${stream.userid}`} className="header">
-              {this.renderThumbnail(stream)}
-              <div class="center aligned" style={{width:"100%",overflow:"hidden",maxHeight:"3em"}}>
-                {stream.title}
+      return (
+        <div class="stackable three column equal height row">
+          {" "}
+          {this.props.streams.map((stream, index) => {
+            return (
+              <div
+                className="column center aligned"
+                style={{
+                  height: "400px",
+                  backgroundColor:
+                    alternatingColor[index % alternatingColor.length],
+                  padding: "1%",
+                }}
+                key={stream.userid}
+              >
+                <Link to={`/streams/${stream.userid}`} className="header">
+                  {this.renderThumbnail(stream)}
+                  <div
+                    class="center aligned"
+                    style={{
+                      width: "100%",
+                      overflow: "hidden",
+                      maxHeight: "3em",
+                    }}
+                  >
+                    {stream.title}
+                  </div>
+                  <div
+                    class="ui fragment content-scrollable description white-text"
+                    style={{ width: "100%", height: "4em" }}
+                  >
+                    {stream.description}
+                  </div>
+                </Link>
+                {this.renderAdmin(stream)}
               </div>
-              <div class="ui fragment content-scrollable description white-text" style={{width:"100%",height:"4em"}}>{stream.description}</div>
-            </Link>
-              {this.renderAdmin(stream)}
-          </div>
-        );
-      })} </div>)
+            );
+          })}{" "}
+        </div>
+      );
     }
   }
 
@@ -123,7 +149,22 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      <div>
+      // <div id="stream-show" className="ui grid stackable">
+      //   <div id="stream-container">
+      //     <div
+      //       className="content-scrollable white-text"
+      //       style={{ paddingLeft: 5 }}
+      //     >
+      //       <div>
+      //         <h2>Streams</h2>
+      //         <div class="carousel">Div for Carousel here</div>
+      //         <div className="ui grid container">{this.renderList()}</div>
+      //         {this.renderCreate()}
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
+      <div className="content-scrollable" style={{ height: "89vh" }}>
         <h2 className="white-text">Streams</h2>
         <div class="carousel">Div for Carousel here</div>
         <div className="ui grid container">{this.renderList()}</div>
