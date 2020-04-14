@@ -8,7 +8,10 @@ import Logo from "./logonobg.png";
 
 const Header = () => {
   return (
-    <div className="ui menu inverted" style={{ margin: "0px 0px 2px", flex: "0 0 auto" }}>
+    <div
+      className="ui menu inverted"
+      style={{ margin: "0px 0px 2px", flex: "0 0 auto" }}
+    >
       <div className="header item">
         <Link to="/">
           <img src={Logo} style={{ width: "100px" }}></img>
