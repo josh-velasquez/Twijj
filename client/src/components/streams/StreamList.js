@@ -122,7 +122,7 @@ class StreamList extends React.Component {
         ).length !== 0
       ) {
         return (
-          <div className="right floated content">
+          <div className="buttons-container" style={{ float: "right" }}>
             <Link
               to={`/streams/delete/${stream.userid}`}
               className="ui button negative buttons-style"
@@ -149,26 +149,20 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      // <div id="stream-show" className="ui grid stackable">
-      //   <div id="stream-container">
-      //     <div
-      //       className="content-scrollable white-text"
-      //       style={{ paddingLeft: 5 }}
-      //     >
-      //       <div>
-      //         <h2>Streams</h2>
-      //         <div class="carousel">Div for Carousel here</div>
-      //         <div className="ui grid container">{this.renderList()}</div>
-      //         {this.renderCreate()}
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
-      <div className="content-scrollable" style={{ height: "89vh" }}>
-        <h2 className="white-text">Streams</h2>
-        <div class="carousel">Div for Carousel here</div>
-        <div className="ui grid container">{this.renderList()}</div>
-        {this.renderCreate()}
+      <div id="stream-show" className="ui grid stackable">
+        <div id="stream-container">
+          <div
+            className="content-scrollable white-text"
+            style={{ paddingLeft: 5 }}
+          >
+            <div>
+              <h2 className="sub-header">Streams</h2>
+              <div class="carousel">Div for Carousel here</div>
+              <div className="ui grid container">{this.renderList()}</div>
+              {this.renderCreate()}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

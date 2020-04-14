@@ -182,9 +182,15 @@ ul {
 
 .buttons-container {
   display: flex;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 .buttons-style {
   flex-grow: 1;
+}
+
+.sub-header {
+  text-align: center;
+  margin-top: 10px !important;
+  color: violet;
 }
