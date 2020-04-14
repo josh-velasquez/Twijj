@@ -49,6 +49,24 @@ class Header extends React.Component {
             <i className="search link icon"></i>
           </div>
         </div>
+        <Profile />
+        <div className="item">
+          <GoogleAuth />
+        </div>
+        <div className="item">
+          <div
+            className="ui compact menu"
+            style={{ backgroundColor: "#1b1c1d" }}
+          >
+            <div className="ui simple dropdown item">
+              <i className="settings icon"></i>
+              <div className="menu">
+                <div className="item">Payment</div>
+                <div className="item">Messaging</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     );
