@@ -8,7 +8,7 @@ import Logo from "./logonobg.png";
 
 const Header = () => {
   return (
-    <div className="ui menu inverted">
+    <div className="ui menu inverted" style={{ margin: "0px 0px 2px", flex: "0 0 auto" }}>
       <div className="header item">
         <Link to="/">
           <img src={Logo} style={{ width: "100px" }}></img>
@@ -35,7 +35,6 @@ const Header = () => {
             <div className="ui simple dropdown item">
               <i className="settings icon"></i>
               <div className="menu">
-                <div className="item">Dark Mode</div>
                 <div className="item">Payment</div>
                 <div className="item">Messaging</div>
               </div>
