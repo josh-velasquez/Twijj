@@ -40,7 +40,7 @@ class SideNav extends React.Component {
 
   render() {
     return (
-      <div className="sidenav" style={{ backgroundColor: "#1F1F23" }}>
+      <div className="ui sidebar visible sticky" style={{ backgroundColor: "#1F1F23" , position:"sticky"}}>
         <div className="subIcon">
           <span>
             <i className="bars large icon white-text"></i>
