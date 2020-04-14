@@ -2,7 +2,7 @@ import {
   FETCH_PROFILE,
   CREATE_PROFILE,
   EDIT_PROFILE,
-  FETCH_ADMINS
+  FETCH_ADMINS,
 } from "../actions/types";
 
 export default (state = {}, action) => {

@@ -8,16 +8,10 @@ const Modal = (props) => {
         onClick={(e) => e.stopPropagation()}
         className="ui standard modal visible active"
       >
-        <div
-          className="header white-text"
-          style={{ background: "#1b1c1d" }}
-        >
+        <div className="header white-text" style={{ background: "#1b1c1d" }}>
           {props.title}
         </div>
-        <div
-          className="content white-text"
-          style={{ background: "#292929" }}
-        >
+        <div className="content white-text" style={{ background: "#292929" }}>
           {props.content}
         </div>
         <div className="actions" style={{ background: "#1b1c1d" }}>

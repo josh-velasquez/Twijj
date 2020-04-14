@@ -12,5 +12,5 @@ export default combineReducers({
   profiles: profileReducer,
   streams: streamReducer,
   streamServer: streamServerReducer,
-  chat: chatReducer
+  chat: chatReducer,
 });
