@@ -137,7 +137,7 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      <div className="content-scrollable" style={{height:"89vh"}}>
+      <div>
         <h2 className="white-text">Streams</h2>
         <div className="carousel">Div for Carousel here</div>
         <div className="ui grid container">{this.renderList()}</div>

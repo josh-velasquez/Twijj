@@ -15,13 +15,9 @@ const App = () => {
   return (
     <div>
       <Router history={history}>
-        <div>
-          <Header />
-        </div>
+        <Header />
         <div className="content">
-          <div>
           <SideNav />
-          </div>
           <div className="ui content-main">
             <Switch>
               <Route path="/" exact component={StreamList} />
