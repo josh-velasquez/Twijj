@@ -195,12 +195,12 @@ ul {
   color: violet;
 }
 
-.ui.grid.page-content {
+#page-content {
   height: 100%;
   margin: 0;
 }
 
-.page-container {
+#page-container {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
