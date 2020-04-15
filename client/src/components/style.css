@@ -195,7 +195,7 @@ ul {
   color: violet;
 }
 
-.page-content {
+.ui.grid.page-content {
   height: 100%;
   margin: 0;
 }
