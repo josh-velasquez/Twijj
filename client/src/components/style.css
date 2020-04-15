@@ -194,3 +194,15 @@ ul {
   margin-top: 10px !important;
   color: violet;
 }
+
+#page-content {
+  height: 100%;
+  margin: 0;
+}
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 0;
+}

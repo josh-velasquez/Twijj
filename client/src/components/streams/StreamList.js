@@ -149,15 +149,15 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      <div id="stream-show" className="ui grid stackable">
-        <div id="stream-container">
+      <div id="page-content" className="ui grid stackable">
+        <div id="page-container">
           <div
             className="content-scrollable white-text"
             style={{ paddingLeft: 5 }}
           >
             <div>
               <h2 className="sub-header">Streams</h2>
-              <div class="carousel">Div for Carousel here</div>
+              <div className="carousel">Div for Carousel here</div>
               <div className="ui grid container">{this.renderList()}</div>
               {this.renderCreate()}
             </div>

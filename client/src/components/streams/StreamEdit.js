@@ -18,8 +18,8 @@ class StreamEdit extends React.Component {
       return <div className="white-text">Loading...</div>;
     }
     return (
-      <div id="stream-show" className="ui grid stackable">
-        <div id="stream-container">
+      <div id="page-content" className="ui grid stackable">
+        <div id="page-container">
           <div
             className="content-scrollable white-text"
             style={{ paddingLeft: 5 }}
