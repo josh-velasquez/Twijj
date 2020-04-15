@@ -77,6 +77,7 @@ class Profile extends React.Component {
           src={Placeholder}
           className="ui image centered circular"
           height="150"
+          alt="Avatar"
         />
         <Field name="username" component={this.renderInput} label="Username" />
         <Field name="bio" component={this.renderTextArea} label="Bio" />

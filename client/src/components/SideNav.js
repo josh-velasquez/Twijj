@@ -1,7 +1,5 @@
 import React from "react";
 import "./style.css";
-
-import OpenPNG from "./open.png";
 import HolderPNG from "./holder.png";
 
 class SideNav extends React.Component {
@@ -31,6 +29,7 @@ class SideNav extends React.Component {
           <img
             src={this.state.subscriptions[i]}
             style={{ width: "20px", height: "20px" }}
+            alt="Subscription Avatar"
           ></img>
         </div>
       );
@@ -40,7 +39,7 @@ class SideNav extends React.Component {
 
   render() {
     return (
-      <div className="sidenav hide-on-mobile" style={{ backgroundColor: "#1F1F23" }}>
+      <div className="hide-on-mobile" style={{ backgroundColor: "#1F1F23" }}>
         <div className="subIcon">
           <span>
             <i className="bars large icon white-text"></i>

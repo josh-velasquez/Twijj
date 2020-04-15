@@ -15,20 +15,29 @@ class StreamEdit extends React.Component {
 
   render() {
     if (!this.props.stream) {
-      return <div>Loading...</div>;
+      return <div className="white-text">Loading...</div>;
     }
     return (
-      <div>
-        <h3 className="white-text">Edit a Stream</h3>
-        <StreamForm
-          initialValues={_.pick(
-            this.props.stream,
-            "title",
-            "description",
-            "gametag"
-          )}
-          onSubmit={this.onSubmit}
-        />
+      <div id="page-content" className="ui grid stackable">
+        <div id="page-container">
+          <div
+            className="content-scrollable white-text"
+            style={{ paddingLeft: 5 }}
+          >
+            <div style={{ padding: "10px 50px" }}>
+              <h2 className="sub-header">Edit Stream</h2>
+              <StreamForm
+                initialValues={_.pick(
+                  this.props.stream,
+                  "title",
+                  "description",
+                  "gametag"
+                )}
+                onSubmit={this.onSubmit}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
