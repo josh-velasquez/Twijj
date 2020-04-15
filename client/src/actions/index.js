@@ -1,4 +1,3 @@
-import streams from "../apis/streams";
 import history from "../history";
 import {
   AWAIT_SIGN_IN,

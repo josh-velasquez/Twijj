@@ -14,11 +14,11 @@ const Header = () => {
     >
       <div className="header item">
         <Link to="/">
-          <img src={Logo} style={{ width: "100px" }}></img>
+          <img src={Logo} style={{ width: "100px" }} alt="Twijj Logo"></img>
         </Link>
       </div>
-      <a className="item">Streams</a>
-      <a className="item">Browse</a>
+      <a className="item" href="/">Streams</a>
+      <a className="item" href="/">Browse</a>
       <div className="right menu hide-on-mobile">
         <div className="item">
           <div className="ui icon input">

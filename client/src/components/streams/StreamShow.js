@@ -66,7 +66,7 @@ class StreamShow extends React.Component {
               <h1>{title}</h1>
               <h4>
                 <span>#{gametag}</span>
-                <span style={{ float: "right", "margin-right": "1em" }}>
+                <span style={{ float: "right", marginRight: "1em" }}>
                   Viewers: {this.props.viewer_count || 0}
                 </span>
               </h4>
