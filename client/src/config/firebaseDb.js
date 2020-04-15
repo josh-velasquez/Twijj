@@ -9,7 +9,7 @@ const app = firebase.initializeApp({
   storageBucket: "twijj-271803.appspot.com",
   messagingSenderId: "434963010544",
   appId: "1:434963010544:web:6d56670aa1caa0ccab4335",
-  measurementId: "G-HF3KRVS2FV"
+  measurementId: "G-HF3KRVS2FV",
 });
 const database = app.firestore();
 

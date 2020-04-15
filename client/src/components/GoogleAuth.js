@@ -6,8 +6,8 @@ import firebase from "firebase";
 class GoogleAuth extends React.Component {
   provider = new firebase.auth.GoogleAuthProvider();
 
-  componentDidUpdate(){
-    if(this.props.rejectSignIn === true){
+  componentDidUpdate() {
+    if (this.props.rejectSignIn === true) {
       firebase.auth().signOut();
     }
   }
@@ -16,18 +16,14 @@ class GoogleAuth extends React.Component {
     firebase.auth().onAuthStateChanged(this.onAuthChange);
   }
 
-  onAuthChange = user => {
+  onAuthChange = (user) => {
     if (user) {
       this.props.fetchProfile({
         id: user.uid,
         name: user.displayName,
-        email: user.email
+        email: user.email,
       });
-      this.props.awaitSignIn(
-        user.uid,
-        user.displayName,
-        user.email
-      );
+      this.props.awaitSignIn(user.uid, user.displayName, user.email);
     } else {
       this.props.signOut();
     }
@@ -37,7 +33,7 @@ class GoogleAuth extends React.Component {
     firebase
       .auth()
       .signInWithPopup(this.provider)
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -69,14 +65,13 @@ class GoogleAuth extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isSignedIn: state.auth.isSignedIn,
-    rejectSignIn: state.auth.rejectSignIn
+    rejectSignIn: state.auth.rejectSignIn,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchProfile, awaitSignIn, signOut }
-)(GoogleAuth);
+export default connect(mapStateToProps, { fetchProfile, awaitSignIn, signOut })(
+  GoogleAuth
+);

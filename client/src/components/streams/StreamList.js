@@ -49,7 +49,7 @@ class StreamList extends React.Component {
       );
     } else {
       return (
-        <div class="stackable three column equal height row">
+        <div className="stackable three column equal height row">
           {" "}
           {this.props.streams.map((stream, index) => {
             return (
@@ -66,7 +66,7 @@ class StreamList extends React.Component {
                 <Link to={`/streams/${stream.userid}`} className="header">
                   {this.renderThumbnail(stream)}
                   <div
-                    class="center aligned"
+                    className="center aligned"
                     style={{
                       width: "100%",
                       overflow: "hidden",
@@ -76,7 +76,7 @@ class StreamList extends React.Component {
                     {stream.title}
                   </div>
                   <div
-                    class="ui fragment content-scrollable description white-text"
+                    className="ui fragment content-scrollable description white-text"
                     style={{ width: "100%", height: "4em" }}
                   >
                     {stream.description}

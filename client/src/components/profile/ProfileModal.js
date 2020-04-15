@@ -4,7 +4,6 @@ import Modal from "../Modal";
 import history from "../../history";
 import { connect } from "react-redux";
 import { fetchProfile, editProfile } from "../../actions";
-import { Link } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import Placeholder from "./profile.jpeg";
 
@@ -68,11 +67,17 @@ class Profile extends React.Component {
 
   renderContent() {
     return (
-      <form className="ui form error">
+      <form
+        className="ui form error"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <img
           src={Placeholder}
           className="ui image centered circular"
           height="150"
+          alt="Avatar"
         />
         <Field name="username" component={this.renderInput} label="Username" />
         <Field name="bio" component={this.renderTextArea} label="Bio" />

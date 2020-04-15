@@ -1,7 +1,5 @@
 import React from "react";
 import "./style.css";
-
-import OpenPNG from "./open.png";
 import HolderPNG from "./holder.png";
 
 class SideNav extends React.Component {
@@ -31,6 +29,7 @@ class SideNav extends React.Component {
           <img
             src={this.state.subscriptions[i]}
             style={{ width: "20px", height: "20px" }}
+            alt="Subscription Avatar"
           ></img>
         </div>
       );

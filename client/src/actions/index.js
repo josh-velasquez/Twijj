@@ -1,4 +1,3 @@
-import streams from "../apis/streams";
 import history from "../history";
 import {
   AWAIT_SIGN_IN,
@@ -16,6 +15,7 @@ import {
   FETCH_STREAM_SERVER_IP,
   CHAT_CONNECT,
   CHAT_DISCONNECT,
+  CHAT_RECONNECTING,
   CHAT_SIGN_IN,
   CHAT_SIGN_OUT,
   CHAT_MESSAGE_SENDING,
@@ -230,7 +230,7 @@ export const chatConnect = (streamid) => async (dispatch) => {
       });
 
       socket.on("disconnect", () => {
-        dispatch(chatDisconnect());
+        dispatch(chatWaitForReconnect());
       });
 
       socket.on("new message", (message) => {
@@ -238,7 +238,10 @@ export const chatConnect = (streamid) => async (dispatch) => {
       });
 
       socket.on("viewer count", (count) => {
-        dispatch({ type: VIEWER_COUNT_UPDATE, payload: {viewer_count: count} });
+        dispatch({
+          type: VIEWER_COUNT_UPDATE,
+          payload: { viewer_count: count },
+        });
       });
     })
     .catch(function (error) {
@@ -274,6 +277,13 @@ export const chatMessageSend = (message) => async (dispatch, getState) => {
     dispatch({ type: CHAT_MESSAGE_SENT });
   });
 };
+
+export const chatWaitForReconnect = () => async (dispatch) => {
+  if (!socket) return;
+
+  dispatch({ type: CHAT_SIGN_OUT });
+  dispatch({ type: CHAT_RECONNECTING });
+}
 
 export const chatDisconnect = () => async (dispatch) => {
   if (!socket) return;
