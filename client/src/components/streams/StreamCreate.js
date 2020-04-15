@@ -31,23 +31,39 @@ class StreamCreate extends React.Component {
 
   render() {
     return (
-      <form
-        className="ui form error"
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-      >
-        <Field name="title" component={this.renderInput} label="Enter Title" />
-        <Field
-          name="description"
-          component={this.renderInput}
-          label="Enter Description"
-        />
-        <Field
-          name="gametag"
-          component={this.renderInput}
-          label="Enter Game Tag"
-        />
-        <button className="ui button primary">Submit</button>
-      </form>
+      <div className="ui grid stackable page-content">
+        <div className="page-container">
+          <div
+            className="content-scrollable white-text"
+            style={{ paddingLeft: 5 }}
+          >
+            <div style={{ padding: "10px 50px" }}>
+              <h2 className="sub-header">Create Stream</h2>
+              <form
+                className="ui form error"
+                onSubmit={this.props.handleSubmit(this.onSubmit)}
+              >
+                <Field
+                  name="title"
+                  component={this.renderInput}
+                  label="Enter Title"
+                />
+                <Field
+                  name="description"
+                  component={this.renderInput}
+                  label="Enter Description"
+                />
+                <Field
+                  name="gametag"
+                  component={this.renderInput}
+                  label="Enter Game Tag"
+                />
+                <button className="ui button primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

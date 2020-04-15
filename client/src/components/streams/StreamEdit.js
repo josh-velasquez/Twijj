@@ -18,14 +18,14 @@ class StreamEdit extends React.Component {
       return <div className="white-text">Loading...</div>;
     }
     return (
-      <div id="page-content" className="ui grid stackable">
-        <div id="page-container">
+      <div className="ui grid stackable page-content">
+        <div className="page-container">
           <div
             className="content-scrollable white-text"
             style={{ paddingLeft: 5 }}
           >
             <div style={{ padding: "10px 50px" }}>
-              <h2 className="sub-header">Edit a Stream</h2>
+              <h2 className="sub-header">Edit Stream</h2>
               <StreamForm
                 initialValues={_.pick(
                   this.props.stream,

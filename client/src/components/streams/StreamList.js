@@ -149,8 +149,8 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      <div id="page-content" className="ui grid stackable">
-        <div id="page-container">
+      <div className="ui grid stackable page-content">
+        <div className="page-container">
           <div
             className="content-scrollable white-text"
             style={{ paddingLeft: 5 }}
