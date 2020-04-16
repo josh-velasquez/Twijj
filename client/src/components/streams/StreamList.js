@@ -135,18 +135,6 @@ class StreamList extends React.Component {
     }
   }
 
-  renderCreate() {
-    if (this.props.isSignedIn) {
-      return (
-        <div style={{ textAlign: "right" }}>
-          <Link to="/streams/new" className="ui button primary">
-            Create Stream
-          </Link>
-        </div>
-      );
-    }
-  }
-
   render() {
     return (
       <div id="page-content" className="ui grid stackable">
@@ -159,7 +147,6 @@ class StreamList extends React.Component {
               <h2 className="sub-header">Streams</h2>
               <div className="carousel">Div for Carousel here</div>
               <div className="ui grid container">{this.renderList()}</div>
-              {this.renderCreate()}
             </div>
           </div>
         </div>
