@@ -36,6 +36,12 @@ class StreamShow extends React.Component {
     });
     this.player.attachMediaElement(this.videoRef.current);
     this.player.load();
+    const playPromise = this.player.play();
+    playPromise.catch((error) => {
+      // player.destroy() calls detachMediaElement which causes an AbortError in Firefox
+      // https://github.com/bilibili/flv.js/issues/532
+      this.player = null;
+    });
   }
 
   render() {
