@@ -9,7 +9,6 @@ import Logo from "./logonobg.png";
 
 class Header extends React.Component {
   renderCreate() {
-    console.log(this.props);
     if (this.props.isSignedIn) {
       return (
         <div className="item" style={{ textAlign: "right" }}>
