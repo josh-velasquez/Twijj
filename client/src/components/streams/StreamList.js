@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchStreams, fetchAdmins } from "../../actions";
 import { Link } from "react-router-dom";
 import thumbnails from "../../assets/thumbnails.json";
+import Carousel from "../Carousel.js"
 
 class StreamList extends React.Component {
   componentDidMount() {
@@ -145,7 +146,7 @@ class StreamList extends React.Component {
           >
             <div>
               <h2 className="sub-header">Streams</h2>
-              <div className="carousel">Div for Carousel here</div>
+              <Carousel/>
               <div className="ui grid container">{this.renderList()}</div>
             </div>
           </div>
