@@ -49,17 +49,17 @@ class StreamList extends React.Component {
       );
     } else {
       return (
-        <div className="stackable three column equal height row">
-          {" "}
+        <div className="stackable equal height row">
           {this.props.streams.map((stream, index) => {
             return (
               <div
-                className="column center aligned"
+                className="five wide column center aligned"
                 style={{
                   height: "400px",
                   backgroundColor:
                     alternatingColor[index % alternatingColor.length],
                   padding: "1%",
+                  margin: "12px"
                 }}
                 key={stream.userid}
               >
@@ -85,7 +85,7 @@ class StreamList extends React.Component {
                 {this.renderAdmin(stream)}
               </div>
             );
-          })}{" "}
+          })}
         </div>
       );
     }
