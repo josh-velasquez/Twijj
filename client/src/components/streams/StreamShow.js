@@ -22,7 +22,7 @@ class StreamShow extends React.Component {
   }
 
   componentWillUnmount() {
-    this.player.destroy();
+    this.player.unload();
   }
 
   buildPlayer() {
