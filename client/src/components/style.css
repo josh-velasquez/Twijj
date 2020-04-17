@@ -207,10 +207,20 @@ ul {
   padding: 0;
 }
 
+@media only screen and (max-width:1800px) {
+	.carousel {
+		display: none;
+	}
+}
+
 .carousel {
 	width: 1730px;
 	height: 360px;
 	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
 }
 
 .leftClick {

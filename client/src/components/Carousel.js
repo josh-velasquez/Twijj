@@ -8,6 +8,7 @@ import placeholder2 from "../assets/placeholder2.png"
 import placeholder3 from "../assets/placeholder3.png"
 import placeholder4 from "../assets/placeholder4.png"
 import placeholder5 from "../assets/placeholder5.png"
+import thumbs from "../assets/thumbnails.json"
 
 import "./style.css";
 
@@ -228,18 +229,18 @@ moveRight() {
       <img id="leftArrow" class="leftClick" src={button_left} onClick={() => this.moveRight()}/>
     <img id="rightArrow" class="rightClick" src={button_right} onClick={() => this.moveLeft()}/>
       
-      <img id="l2" class="left2" src={placeholder1}/>
+      <img id="l2" class="left2" src={thumbs.overwatch}/>
       <div class="left2Click" onClick={() => this.moveRight()}></div>
       
-    <img id="l1" class="left1" src={placeholder2}/>
+    <img id="l1" class="left1" src={thumbs.csgo}/>
     <div class="left1Click" onClick={() => this.moveRight()}></div>
       
-    <img id="m" class="middle" src={placeholder3} onClick=""/>
+    <img id="m" class="middle" src={thumbs.leagueoflegends} onClick=""/>
       
-      <img id="r1" class="right1" src={placeholder4}/>
+      <img id="r1" class="right1" src={thumbs.pubg}/>
       <div class="right1Click" onClick={() => this.moveLeft()}></div>
       
-      <img id="r2" class="right2" src={placeholder5}/>
+      <img id="r2" class="right2" src={thumbs.minecraft}/>
     <div class="right2Click" onClick={() => this.moveLeft()}></div>
     </div>
     );
