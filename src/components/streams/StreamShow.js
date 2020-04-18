@@ -54,7 +54,7 @@ class StreamShow extends React.Component {
               className="item right"
               style={{ paddingTop: 0, paddingBottom: 0 }}
             >
-              <button className="ui teal button floated">Subscribe</button>
+              <button className="ui teal button floated hide-on-mobile">Subscribe</button>
             </div>
           </div>
           <div
