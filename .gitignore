@@ -1,5 +1,4 @@
-api/node_modules
-client/node_modules
-rtmpserver/node_modules
+node_modules
+functions/node_modules
 .vscode/
-client/build
+build

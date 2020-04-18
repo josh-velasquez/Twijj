@@ -59,7 +59,7 @@ class StreamList extends React.Component {
                   backgroundColor:
                     alternatingColor[index % alternatingColor.length],
                   padding: "1%",
-                  margin: "12px"
+                  margin: "12px",
                 }}
                 key={stream.userid}
               >
@@ -145,7 +145,6 @@ class StreamList extends React.Component {
           >
             <div>
               <h2 className="sub-header">Streams</h2>
-              <div className="carousel">Div for Carousel here</div>
               <div className="ui grid container">{this.renderList()}</div>
             </div>
           </div>
